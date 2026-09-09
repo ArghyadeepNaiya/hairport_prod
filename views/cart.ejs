@@ -1,85 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Your Cart | Ranchi Hair Port</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/cart.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart — Ranchi Hair Port</title>
+  <meta name="description" content="Review your selected salon services and checkout at Ranchi Hair Port." />
+  <link rel="icon" type="image/svg+xml" href="/src/assets/svgs/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:where(.dark, .dark *));
+  </style>
+  <link rel="stylesheet" href="/tailwind_base.css" />
 </head>
-<body>
-    <div class="checkout-container">
-        <!-- Progress Bar -->
-        <div class="progress-bar">
-            <div class="step active">1. Cart Summary</div>
-            <div class="step">2. Schedule & Location</div>
-            <div class="step">3. Confirmation</div>
-        </div>
+<body class="font-sans antialiased bg-[#FAF9F5] dark:bg-[#0F0F0F] text-[#1C1C1C] dark:text-[#F8F8F8] flex flex-col min-h-screen transition-colors duration-300">
 
-        <div class="card">
-            <h2>Your Selected Services</h2>
-            
-            <% if (cart.items.length === 0) { %>
-                <p class="empty-state">Your cart is empty. <br><a href="/hairport/user/home">Browse Services</a></p>
-            <% } else { %>
-                <div class="cart-items">
-                    <% cart.items.forEach(item => { %>
-                        <div class="cart-item" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px dashed #eee;">
-                            <div style="display: flex; align-items: center; flex: 1;">
-                                <img src="<%= item.image %>" alt="<%= item.name %>" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover; margin-right: 15px;">
-                                <div class="item-details">
-                                    <h4 style="font-size: 1rem; margin-bottom: 3px;"><%= item.name %></h4>
-                                    <p style="font-size: 0.8rem; color: #777;"><%= item.category %></p>
-                                </div>
-                            </div>
-                            
-                            <div style="display: flex; align-items: center; gap: 15px;">
-                                <div class="item-price" style="font-weight: 600; font-size: 1.1rem;">₹<%= item.price %></div>
-                                
-                                <!-- REMOVE BUTTON -->
-                                <form action="/hairport/user/cart/remove/<%= item._id %>" method="POST" style="margin: 0;">
-                                    <button type="submit" style="background: rgba(232, 67, 88, 0.1); border: 1px solid #e84358; color: #e84358; width: 35px; height: 35px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s;">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    <% }) %>
-                </div>
-                
-                <div class="total-row">
-                    <span>Subtotal:</span>
-                    <span>₹<%= subtotal %></span>
-                </div>
-                
-                <a href="/hairport/user/cart/schedule" class="btn primary-btn">Proceed to Schedule <i class="fa-solid fa-arrow-right"></i></a>
-            <% } %>
-        </div>
-
-        <!-- Existing Cart Items Loop Ends Above This -->
-        
-        <!-- Frequently Bought Together Section -->
-        <% if (typeof recommendations !== 'undefined' && recommendations.length > 0) { %>
-            <div class="recommendations-section" style="margin-top: 40px; padding-top: 25px; border-top: 2px dashed #eee;">
-                <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; color: #111;">Frequently Bought Together</h3>
-                <div class="recommendations-grid" style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none;">
-                    <% recommendations.forEach(item => { %>
-                        <div class="rec-card" style="min-width: 220px; flex: 1; border: 1px solid #eaeaea; border-radius: 12px; padding: 12px; background: #fff;">
-                            <img src="<%= item.image %>" alt="<%= item.name %>" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
-                            <h4 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #222;"><%= item.name %></h4>
-                            <p style="font-size: 1rem; font-weight: 700; color: #111; margin-bottom: 12px;">₹<%= item.price %></p>
-                            
-                            <form action="/hairport/user/cart/add/<%= item._id %>" method="POST" style="margin: 0;">
-                                <button type="submit" style="width: 100%; padding: 10px; background: transparent; border: 1px solid #e84358; color: #e84358; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#fff1f2'" onmouseout="this.style.background='transparent'">
-                                    ADD +
-                                </button>
-                            </form>
-                        </div>
-                    <% }) %>
-                </div>
-            </div>
-        <% } %>
-
+  <!-- Header -->
+  <header class="sticky top-0 z-30 px-4 py-3 bg-white/90 dark:bg-[#141414]/90 backdrop-blur-xl border-b border-stone-200/60 dark:border-stone-800/60 flex items-center justify-between">
+    <a href="/hairport/user/home" class="flex items-center gap-2 px-2 py-1.5 -ml-2 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors group">
+      <svg class="w-5 h-5 text-[#E23744] group-hover:-translate-x-0.5 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      <span class="text-sm font-extrabold text-[#E23744] hidden sm:inline">Back to Catalog</span>
+    </a>
+    <div class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-rose-500 to-rose-600 text-white flex items-center justify-center shadow-md shadow-rose-500/20">
+        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </div>
+      <h1 class="text-base font-black text-[#1C1C1C] dark:text-[#F8F8F8]">Your Cart</h1>
+      <span id="header-cart-count" class="hidden text-[10px] font-black bg-[#E23744] text-white w-5 h-5 rounded-full items-center justify-center shadow-sm"></span>
     </div>
+    <div class="flex items-center gap-2">
+      <button data-action="toggle-theme" aria-label="Toggle Theme" class="w-9 h-9 rounded-xl flex items-center justify-center bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors">
+        <svg id="theme-icon" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+      <a href="/hairport/user/profile" aria-label="Profile" class="w-9 h-9 rounded-xl flex items-center justify-center bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 w-full max-w-2xl mx-auto px-4 sm:px-6 py-5 flex flex-col gap-6">
+
+    <!-- Progress Steps -->
+    <div class="w-full flex items-center justify-between relative px-2">
+      <div class="absolute top-1/2 left-6 right-6 h-0.5 bg-stone-200 dark:bg-stone-800 -translate-y-1/2 rounded-full"></div>
+      <div class="absolute top-1/2 left-6 h-0.5 bg-gradient-to-r from-[#E23744] to-rose-400 -translate-y-1/2 rounded-full transition-all duration-500" style="width:33%"></div>
+      
+      <div class="flex flex-col items-center gap-1.5 relative z-10">
+        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-[#E23744] to-rose-500 text-white flex items-center justify-center font-extrabold shadow-lg shadow-rose-500/30 ring-4 ring-rose-500/15">
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <span class="text-[10px] font-black text-[#E23744] uppercase tracking-wider">Cart</span>
+      </div>
+      
+      <div class="flex flex-col items-center gap-1.5 relative z-10">
+        <div class="w-9 h-9 rounded-full bg-white dark:bg-stone-800 text-stone-400 border-2 border-stone-300 dark:border-stone-700 flex items-center justify-center">
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <span class="text-[10px] font-bold text-stone-400 uppercase tracking-wider">Schedule</span>
+      </div>
+
+      <div class="flex flex-col items-center gap-1.5 relative z-10">
+        <div class="w-9 h-9 rounded-full bg-white dark:bg-stone-800 text-stone-400 border-2 border-stone-300 dark:border-stone-700 flex items-center justify-center">
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        </div>
+        <span class="text-[10px] font-bold text-stone-400 uppercase tracking-wider">Checkout</span>
+      </div>
+    </div>
+
+    <!-- Frequently Bought Together (appears FIRST, above cart items) -->
+    
+<% if (typeof recommendations !== 'undefined' && recommendations.length > 0) { %>
+    <div id="cart-recommendations-container">
+      <div class="flex items-center gap-2.5 mb-3 px-1">
+        <div class="w-6 h-6 rounded-lg bg-amber-500/10 flex items-center justify-center">
+          <svg class="w-3.5 h-3.5 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+        </div>
+        <div>
+          <h3 class="text-sm font-black text-[#1C1C1C] dark:text-white">Frequently Bought Together</h3>
+        </div>
+      </div>
+      <div id="recommendation-grid" class="flex overflow-x-auto gap-3 pb-3 snap-x snap-mandatory cart-hide-scrollbar">
+        <% recommendations.forEach(item => { %>
+        <div class="w-64 shrink-0 snap-start bg-white dark:bg-[#1E1E1E] rounded-2xl p-3 border border-stone-200 dark:border-stone-800 flex gap-3 shadow-sm rec-anim-in">
+          <div class="w-16 h-16 rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800 shrink-0">
+            <img src="<%= item.image %>" class="w-full h-full object-cover" />
+          </div>
+          <div class="flex-1 flex flex-col justify-between py-0.5">
+            <div>
+              <h4 class="text-xs font-black text-[#1C1C1C] dark:text-white line-clamp-2 leading-tight"><%= item.name %></h4>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-black text-[#1C1C1C] dark:text-white">₹<%= item.price %></span>
+              <form action="/hairport/user/cart/add/<%= item._id %>" method="POST" style="margin:0;">
+                  <button type="submit" class="px-2.5 py-1 bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-700 text-[#1C1C1C] dark:text-white text-[10px] font-bold rounded-lg transition-colors uppercase tracking-wider">Add</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+<% } %>
+
+      <div id="recommendation-grid" class="flex overflow-x-auto gap-3 pb-3 snap-x snap-mandatory cart-hide-scrollbar">
+        <!-- Recommendations injected here -->
+      </div>
+    </div>
+
+    <!-- Cart Items -->
+    <div>
+      <div class="flex items-center justify-between mb-3 px-1">
+        <h2 class="text-sm font-black text-[#1C1C1C] dark:text-white uppercase tracking-wider">Your Services</h2>
+        <button id="clear-cart-btn" data-action="clear-cart" class="hidden text-[10px] font-bold text-stone-400 hover:text-[#E23744] transition-colors uppercase tracking-wider">Clear All</button>
+      </div>
+      <div id="cart-items-container" class="space-y-3">
+
+<% if (cart.items.length === 0) { %>
+    <div class="bg-white dark:bg-[#1E1E1E] rounded-3xl p-10 text-center space-y-3 border border-stone-200 dark:border-stone-800 my-8">
+        <h3 class="text-base font-extrabold text-stone-800 dark:text-stone-200">Your Cart is Empty</h3>
+        <p class="text-xs text-stone-400 max-w-sm mx-auto">Looks like you haven't added any salon packages yet.</p>
+        <a href="/hairport/user/home" class="inline-block mt-4 px-6 py-2 bg-[#E23744] text-white font-bold rounded-xl shadow-lg">Browse Services</a>
+    </div>
+<% } else { %>
+    <% cart.items.forEach(item => { %>
+    <div class="bg-white dark:bg-[#1E1E1E] rounded-2xl p-4 flex gap-4 border border-stone-200 dark:border-stone-800 relative shadow-sm">
+      <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800 shrink-0">
+        <img src="<%= item.image %>" class="w-full h-full object-cover" />
+      </div>
+      <div class="flex-1 flex flex-col justify-between py-0.5">
+        <div>
+          <div class="flex justify-between items-start gap-2 mb-1">
+            <h3 class="text-sm font-extrabold text-[#1C1C1C] dark:text-white leading-tight line-clamp-2"><%= item.name %></h3>
+            <form action="/hairport/user/cart/remove/<%= item._id %>" method="POST" style="margin:0;">
+                <button type="submit" class="w-7 h-7 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-rose-50 hover:text-rose-600 transition-colors flex items-center justify-center shrink-0">
+                  <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </form>
+          </div>
+          <p class="text-[10px] font-bold text-stone-400 uppercase tracking-wider"><%= item.category %></p>
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-baseline gap-1.5">
+            <span class="text-base font-black text-[#1C1C1C] dark:text-white">₹<%= item.price %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+<% } %>
+
+      </div>
+    </div>
+
+    <!-- Order Summary (shown when cart has items) -->
+    
+<% if (cart.items.length > 0) { %>
+    <div id="order-summary" class="bg-white dark:bg-[#1E1E1E] rounded-2xl border border-stone-200 dark:border-stone-800 p-5 space-y-3">
+      <h3 class="text-xs font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider">Order Summary</h3>
+      <div class="space-y-2">
+        <div class="flex justify-between text-sm">
+          <span class="text-stone-600 dark:text-stone-400">Subtotal (<span id="summary-count"><%= cart.items.length %></span> services)</span>
+          <span class="font-bold" id="summary-subtotal">₹<%= subtotal %></span>
+        </div>
+      </div>
+      <div class="border-t border-stone-100 dark:border-stone-800 pt-3 flex justify-between items-baseline">
+        <span class="text-sm font-bold text-stone-700 dark:text-stone-300">Total</span>
+        <div class="text-right">
+          <p class="text-xl font-black text-[#1C1C1C] dark:text-white" id="summary-total">₹<%= subtotal %></p>
+        </div>
+      </div>
+    </div>
+<% } %>
+
+  </main>
+
+  <!-- Checkout Footer -->
+  
+<% if (cart.items.length > 0) { %>
+  <div id="checkout-footer" class="sticky bottom-0 bg-white/95 dark:bg-[#141414]/95 backdrop-blur-xl px-4 py-3 border-t border-stone-200/60 dark:border-stone-800/60 z-20">
+    <div class="max-w-2xl mx-auto flex items-center justify-between gap-4">
+      <div>
+        <p class="text-[10px] text-stone-500 uppercase font-black tracking-wider">Total</p>
+        <p class="text-lg font-black text-[#1C1C1C] dark:text-white" id="cart-subtotal">₹<%= subtotal %></p>
+      </div>
+      <a href="/hairport/user/cart/schedule" class="flex-1 max-w-[200px] py-3.5 rounded-2xl bg-gradient-to-r from-[#E23744] to-rose-500 hover:from-[#CB202D] hover:to-rose-600 text-white font-black text-sm uppercase tracking-wider shadow-lg shadow-rose-500/25 active:scale-[0.97] transition-all flex items-center justify-center gap-2">
+        <span>PROCEED</span>
+        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+<% } %>
+
+
+  <style>
+    .cart-hide-scrollbar::-webkit-scrollbar { display: none; }
+    .cart-hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    @keyframes cartFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .cart-anim-in {
+      animation: cartFadeIn 0.3s ease-out both;
+    }
+    @keyframes recSlideIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .rec-anim-in {
+      animation: recSlideIn 0.35s ease-out both;
+    }
+  </style>
+
+  
+  <script>
+    const themeBtn = document.querySelector('[data-action="toggle-theme"]');
+    if(themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+    }
+  </script>
+
 </body>
 </html>

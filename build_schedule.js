@@ -1,4 +1,6 @@
+const fs = require('fs');
 
+const scheduleHtml = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Schedule Service — Ranchi Hair Port</title>
   <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-  <style type="text/tailwindcss">
-    @custom-variant dark (&:where(.dark, .dark *));
-  </style>
   <link rel="stylesheet" href="/tailwind_base.css" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 </head>
@@ -116,9 +115,13 @@
           const yyyy = today.getFullYear();
           const mm = String(today.getMonth() + 1).padStart(2, '0');
           const dd = String(today.getDate()).padStart(2, '0');
-          const formattedToday = `${yyyy}-${mm}-${dd}`;
+          const formattedToday = \`\${yyyy}-\${mm}-\${dd}\`;
           dateInput.min = formattedToday;
       });
   </script>
 </body>
 </html>
+`;
+
+fs.writeFileSync('/home/orstead/Documents/hairport_prod/views/schedule.ejs', scheduleHtml);
+console.log('Successfully compiled schedule.ejs');

@@ -1,44 +1,48 @@
-<!-- login.ejs -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In | Ranchi Hair Port</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/login.css">
+  <meta charset="UTF-8">
+  <title>Log In | Ranchi Hair Port</title>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:where(.dark, .dark *));
+  </style>
+  <link rel="stylesheet" href="/tailwind_base.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 </head>
-<body>
+<body class="font-sans antialiased bg-[#FAF9F5] dark:bg-[#0F0F0F] text-[#1C1C1C] dark:text-[#F8F8F8] flex flex-col min-h-screen justify-center p-4">
 
-    <div class="auth-container">
-        <div class="logo">
-            <h1>RANCHI HAIR PORT <span class="badge">SALON</span></h1>
-            <p class="subtitle">Welcome back! Please log in.</p>
-        </div>
-
-        <form action="/hairport/user/login" method="POST">
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="john@example.com" required>
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
-            </div>
-
-            <div class="forgot-password">
-                <a href="/forgot-password">Forgot Password?</a>
-            </div>
-
-            <button type="submit" class="submit-btn">Log In <i class="fa-solid fa-arrow-right icon-spacing"></i></button>
-        </form>
-
-        <div class="toggle-link">
-            Don't have an account? <a href="/hairport/user/signup">Sign up here</a>
-        </div>
+  <div class="w-full max-w-md mx-auto">
+    <div class="text-center mb-8">
+        <h1 class="text-2xl font-black tracking-tight text-[#1C1C1C] dark:text-white">RANCHI HAIR PORT <span class="text-[10px] bg-[#E23744] text-white px-2 py-0.5 rounded-full ml-1">SALON</span></h1>
     </div>
+
+    <div class="bg-white dark:bg-[#1E1E1E] rounded-[2rem] p-6 sm:p-8 border border-stone-200 dark:border-stone-800 shadow-2xl">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-black text-[#1C1C1C] dark:text-white mb-2">Welcome Back</h2>
+        <p class="text-sm text-stone-500 dark:text-stone-400">Login to access your bookings and exclusive offers</p>
+      </div>
+      
+      
+<form action="/hairport/user/login" method="POST" class="space-y-4">
+    <div class="space-y-1.5">
+        <label class="text-[11px] font-extrabold uppercase tracking-wider text-stone-500">Email Address</label>
+        <input type="email" name="email" class="w-full px-4 py-3 bg-stone-50 dark:bg-stone-900 text-sm font-black rounded-xl border border-stone-200 dark:border-stone-700 focus:outline-none focus:ring-2 focus:ring-rose-500/30 text-[#1C1C1C] dark:text-white" placeholder="john@example.com" required>
+    </div>
+    <div class="space-y-1.5">
+        <label class="text-[11px] font-extrabold uppercase tracking-wider text-stone-500 flex justify-between"><span>Password</span><a href="/forgot-password" class="text-[#E23744] hover:underline">Forgot?</a></label>
+        <input type="password" name="password" class="w-full px-4 py-3 bg-stone-50 dark:bg-stone-900 text-sm font-black rounded-xl border border-stone-200 dark:border-stone-700 focus:outline-none focus:ring-2 focus:ring-rose-500/30 text-[#1C1C1C] dark:text-white" placeholder="••••••••" required>
+    </div>
+    <button type="submit" class="w-full py-3.5 rounded-xl bg-[#1C1C1C] dark:bg-white text-white dark:text-[#1C1C1C] font-black text-sm uppercase tracking-wider hover:scale-[1.02] active:scale-95 transition-all shadow-lg mt-2">Log In</button>
+</form>
+
+      
+      <div class="mt-6 text-center text-sm font-bold text-stone-500">
+        Don't have an account? <a href="/hairport/user/signup" class="text-[#E23744] hover:underline">Sign up here</a>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>
