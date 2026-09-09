@@ -44,17 +44,21 @@ const homepage = async (req, res, next) => {
         let cartItemCount = 0;
         let cartTotal = 0;
         let userSubscribed = false;
+        let cartItems = [];
 
+        let isLoggedIn = false;
         if (req.cookies && req.cookies.token) {
             try {
                 const decoded = JWT.verify(req.cookies.token, process.env.SUPERSECRET || 'your_secret_key');
                 const userId = decoded._id || decoded.id; 
                 const user = await Customer.findById(userId);
                 if (user) {
+                    isLoggedIn = true;
                     userSubscribed = (user.has_subscription === 'yes');
                     const cart = await Cart.findOne({ user: userId }).populate('items');
                     if (cart && cart.items.length > 0) {
                         cartItemCount = cart.items.length;
+                        cartItems = cart.items;
                         cart.items.forEach(item => cartTotal += item.price);
                     }
                 }
@@ -68,7 +72,9 @@ const homepage = async (req, res, next) => {
             searchQuery: searchQuery || '',
             cartItemCount,
             cartTotal,
+            cartItems,
             userSubscribed,
+            isLoggedIn,
             currentPage: page,      // Passing pagination data to EJS
             totalPages: totalPages,
             totalListings: totalListings
@@ -160,7 +166,7 @@ const logout=async(req,res,next)=>{
             httpOnly: true //  not able to modify  the cookie in client side
         };
         res.cookie("token",null,cookieOption);
-        res.redirect("/home");
+        res.redirect("/hairport/user/signup");
     }
     catch(e){
         return next(new ExpressError(e,500));

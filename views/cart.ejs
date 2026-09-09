@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Cart — Ranchi Hair Port</title>
-  <meta name="description" content="Review your selected salon services and checkout at Ranchi Hair Port." />
+  <title>Checkout | Ranchi Hair Port</title>
+  <meta name="description" content="Review your selected premium salon services, haircuts, and spa treatments before checking out at Ranchi Hair Port.">
+  <link rel="canonical" href="http://localhost:8008/hairport/user/cart" />
+  <meta property="og:title" content="Checkout | Ranchi Hair Port">
+  <meta property="og:description" content="Review your selected premium salon services before checking out at Ranchi Hair Port.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1974">
+  <meta name="twitter:card" content="summary">
   <link rel="icon" type="image/svg+xml" href="/src/assets/svgs/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -86,7 +91,7 @@
         <% recommendations.forEach(item => { %>
         <div class="w-64 shrink-0 snap-start bg-white dark:bg-[#1E1E1E] rounded-2xl p-3 border border-stone-200 dark:border-stone-800 flex gap-3 shadow-sm rec-anim-in">
           <div class="w-16 h-16 rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800 shrink-0">
-            <img src="<%= item.image %>" class="w-full h-full object-cover" />
+            <img src="<%= item.image %>" alt="<%= item.name %> Service Image" class="w-full h-full object-cover" />
           </div>
           <div class="flex-1 flex flex-col justify-between py-0.5">
             <div>
@@ -128,7 +133,7 @@
     <% cart.items.forEach(item => { %>
     <div class="bg-white dark:bg-[#1E1E1E] rounded-2xl p-4 flex gap-4 border border-stone-200 dark:border-stone-800 relative shadow-sm">
       <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800 shrink-0">
-        <img src="<%= item.image %>" class="w-full h-full object-cover" />
+        <img src="<%= item.image %>" alt="<%= item.name %> Service Image" class="w-full h-full object-cover" />
       </div>
       <div class="flex-1 flex flex-col justify-between py-0.5">
         <div>
@@ -141,6 +146,24 @@
             </form>
           </div>
           <p class="text-[10px] font-bold text-stone-400 uppercase tracking-wider"><%= item.category %></p>
+          
+          <% if(item.duration) { %>
+          <div class="mt-1 flex items-center gap-1 text-stone-500 dark:text-stone-400 text-[10px] font-bold">
+            <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span><%= item.duration %></span>
+          </div>
+          <% } %>
+          
+          <% if(item.processes && item.processes.length > 0) { %>
+          <div class="mt-1.5 flex flex-wrap gap-1">
+            <% item.processes.slice(0, 3).forEach((step) => { %>
+              <span class="inline-flex items-center px-1.5 py-0.5 rounded-md bg-stone-100 dark:bg-stone-800 text-[9px] font-bold text-stone-500 dark:text-stone-400 border border-stone-200 dark:border-stone-700 whitespace-nowrap"><%= step %></span>
+            <% }) %>
+            <% if(item.processes.length > 3) { %>
+              <span class="inline-flex items-center px-1.5 py-0.5 rounded-md bg-stone-100 dark:bg-stone-800 text-[9px] font-bold text-stone-500 dark:text-stone-400 border border-stone-200 dark:border-stone-700 whitespace-nowrap">+<%= item.processes.length - 3 %> more</span>
+            <% } %>
+          </div>
+          <% } %>
         </div>
         <div class="flex items-center justify-between">
           <div class="flex items-baseline gap-1.5">

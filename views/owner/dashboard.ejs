@@ -2,46 +2,161 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Owner Dashboard | Ranchi Hair Port</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/owner.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+    </style>
+    <link rel="stylesheet" href="/tailwind_base.css" />
 </head>
-<body class="owner-body">
+<body class="font-sans antialiased bg-[#FAF9F5] text-[#1C1C1C] min-h-screen">
     
-    <div class="dashboard-nav">
-        <h2>Salon Management</h2>
-        <div style="display: flex; gap: 10px;">
-            <a href="/hairport/owner/listing/new" class="btn" style="width: auto; padding: 8px 15px;">+ Create Listing</a>
-            <a href="/hairport/owner/logout" class="btn outline">Logout</a>
+    <!-- Navbar -->
+    <header class="sticky top-0 z-30 px-6 py-4 bg-white/95 backdrop-blur-md border-b border-stone-200 shadow-sm flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-stone-100 flex items-center justify-center text-stone-600">
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div>
+                <h1 class="text-lg font-black tracking-tight text-[#1C1C1C]">RANCHI HAIR PORT</h1>
+                <p class="text-[10px] font-extrabold text-stone-500 uppercase tracking-widest">Salon Management</p>
+            </div>
         </div>
-    </div>
+        <div class="flex items-center gap-3">
+            <a href="/hairport/owner/listing/new" class="px-4 py-2 rounded-xl bg-[#1C1C1C] hover:bg-black text-white font-bold text-xs flex items-center gap-2 transition-colors">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                Create Listing
+            </a>
+            <a href="/hairport/owner/logout" class="px-4 py-2 rounded-xl bg-stone-100 text-stone-600 hover:bg-stone-200 font-bold text-xs transition-colors">Logout</a>
+        </div>
+    </header>
 
-    <div class="owner-card" style="max-width: 800px;">
-        <h3>Active Customer Bookings</h3>
+    <main class="max-w-6xl mx-auto p-6 mt-4">
+        <div class="mb-8">
+            <h2 class="text-2xl font-black text-stone-900">Customer Bookings</h2>
+            <p class="text-sm text-stone-500 mt-1">Manage all appointments, grouped by customer.</p>
+        </div>
+
+        <% const userIds = Object.keys(groupedOrders); %>
         
-        <% if (typeof orders !== 'undefined' && orders.length > 0) { %>
-            <% orders.forEach(order => { %>
-                <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <p style="font-weight: 600; margin-bottom: 5px;">
-                            <%= order.user ? order.user.username : 'Unknown User' %> 
-                            <span style="color: #777; font-size: 0.85rem;">(<%= order.user ? order.user.phone : 'No Phone' %>)</span>
-                        </p>
-                        <p style="font-size: 0.9rem; margin-bottom: 3px;"><strong>Location:</strong> <%= order.location %></p>
-                        <p style="font-size: 0.9rem; margin-bottom: 3px;"><strong>Date/Time:</strong> <%= order.date %> at <%= order.time %></p>
-                        <p style="font-size: 0.9rem; color: #2ecc71; font-weight: 600;">Total Paid: ₹<%= order.total %></p>
+        <% if (userIds.length > 0) { %>
+            <div class="grid grid-cols-1 gap-6">
+                <% userIds.forEach(userId => { 
+                    const customerData = groupedOrders[userId];
+                    const user = customerData.user;
+                %>
+                    <div class="bg-white rounded-3xl p-6 border border-stone-200 shadow-sm flex flex-col gap-6">
+                        <!-- Customer Header -->
+                        <div class="flex items-center gap-4 border-b border-stone-100 pb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center font-black text-xl uppercase"><%= user.username.charAt(0) %></div>
+                            <div>
+                                <h3 class="text-lg font-black text-stone-900"><%= user.username %></h3>
+                                <div class="flex items-center gap-3 mt-0.5">
+                                    <p class="text-xs font-bold text-stone-500 flex items-center gap-1">
+                                        <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                        <%= user.phone %>
+                                    </p>
+                                    <p class="text-xs font-bold text-stone-500 flex items-center gap-1">
+                                        <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                        <%= user.email %>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Active Bookings -->
+                            <div>
+                                <h4 class="text-xs font-extrabold uppercase tracking-widest text-stone-400 mb-3 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                                    Active Bookings (<%= customerData.active.length %>)
+                                </h4>
+                                
+                                <% if (customerData.active.length > 0) { %>
+                                    <div class="space-y-3">
+                                        <% customerData.active.forEach(order => { %>
+                                            <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200">
+                                                <div class="flex justify-between items-start mb-2">
+                                                    <div>
+                                                        <span class="text-[10px] font-black uppercase tracking-widest text-[#E23744] bg-rose-50 px-2 py-0.5 rounded-md"><%= order.date %> @ <%= order.time %></span>
+                                                        <p class="text-xs font-bold text-stone-600 mt-1.5"><%= order.location %></p>
+                                                    </div>
+                                                    <span class="text-sm font-black text-[#1C1C1C]">₹<%= order.total %></span>
+                                                </div>
+                                                
+                                                <div class="mt-3 space-y-1">
+                                                    <% order.items.forEach(item => { %>
+                                                        <p class="text-xs font-semibold text-stone-500 flex items-center gap-1.5 before:content-[''] before:block before:w-1 before:h-1 before:rounded-full before:bg-stone-300"><%= item.name %></p>
+                                                    <% }) %>
+                                                </div>
+
+                                                <div class="mt-4 pt-3 border-t border-stone-200 flex justify-end">
+                                                    <form action="/hairport/owner/order/<%= order._id %>/finish?_method=PUT" method="POST" class="m-0">
+                                                        <button type="submit" class="px-4 py-1.5 rounded-lg bg-[#E23744] hover:bg-[#CB202D] text-white font-bold text-xs transition-colors flex items-center gap-1.5">
+                                                            <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                                            Mark Finished
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        <% }) %>
+                                    </div>
+                                <% } else { %>
+                                    <div class="p-4 rounded-2xl border border-dashed border-stone-200 flex items-center justify-center text-xs font-bold text-stone-400 bg-stone-50/50 h-32">
+                                        No active bookings
+                                    </div>
+                                <% } %>
+                            </div>
+
+                            <!-- Finished Bookings -->
+                            <div>
+                                <h4 class="text-xs font-extrabold uppercase tracking-widest text-stone-400 mb-3 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                    Past History (<%= customerData.finished.length %>)
+                                </h4>
+                                
+                                <% if (customerData.finished.length > 0) { %>
+                                    <div class="space-y-3">
+                                        <% customerData.finished.forEach(order => { %>
+                                            <div class="p-4 rounded-2xl bg-white border border-stone-200 opacity-75 hover:opacity-100 transition-opacity">
+                                                <div class="flex justify-between items-start mb-2">
+                                                    <div>
+                                                        <span class="text-[10px] font-black uppercase tracking-widest text-stone-500 bg-stone-100 px-2 py-0.5 rounded-md"><%= order.date %> @ <%= order.time %></span>
+                                                        <p class="text-xs font-bold text-stone-500 mt-1.5"><%= order.location %></p>
+                                                    </div>
+                                                    <span class="text-sm font-black text-stone-600">₹<%= order.total %></span>
+                                                </div>
+                                                
+                                                <div class="mt-3 space-y-1">
+                                                    <% order.items.forEach(item => { %>
+                                                        <p class="text-xs font-medium text-stone-400 flex items-center gap-1.5 before:content-[''] before:block before:w-1 before:h-1 before:rounded-full before:bg-stone-200"><%= item.name %></p>
+                                                    <% }) %>
+                                                </div>
+                                            </div>
+                                        <% }) %>
+                                    </div>
+                                <% } else { %>
+                                    <div class="p-4 rounded-2xl border border-dashed border-stone-200 flex items-center justify-center text-xs font-bold text-stone-400 bg-white h-32">
+                                        No past history
+                                    </div>
+                                <% } %>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <!-- The Finish Button triggers a DELETE request via method-override -->
-                    <form action="/hairport/owner/order/<%= order._id %>?_method=DELETE" method="POST" style="margin: 0;">
-                        <button type="submit" class="btn outline" style="border-color: #2ecc71; color: #2ecc71;">Finish ✓</button>
-                    </form>
-                </div>
-            <% }) %>
+                <% }) %>
+            </div>
         <% } else { %>
-            <p style="color: #777; text-align: center; padding: 20px 0;">No active orders currently.</p>
+            <div class="bg-white rounded-3xl p-12 border border-stone-200 shadow-sm text-center">
+                <div class="w-16 h-16 rounded-2xl bg-stone-50 text-stone-300 mx-auto flex items-center justify-center mb-4">
+                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+                </div>
+                <h3 class="text-lg font-black text-stone-900 mb-1">No Orders Found</h3>
+                <p class="text-sm text-stone-500 max-w-sm mx-auto">There are currently no bookings in the system. When customers book appointments, they will appear here grouped by user.</p>
+            </div>
         <% } %>
-    </div>
+    </main>
 
 </body>
 </html>

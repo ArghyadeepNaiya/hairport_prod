@@ -14,11 +14,12 @@ const listingSchema = new mongoose.Schema({
         default: 'All Genders'
     },
     description: { type: String, trim: true, required: true },
+    processes: [{ type: String }],
     category: {
         type: String,
         required: true,
         enum: [
-            'Hair & Spa', 'Facials & Glow', 'Nails & Art', 'Mani-Pedi', 
+            'Hair', 'Spa', 'Facials & Glow', 'Nails & Art', 'Mani-Pedi', 
             'D-Tan Packs', 'Waxing', 'Combo Offers', 'Men\'s Special',
             'Bridal & Wedding', 'Makeup', 'Academy' 
         ]

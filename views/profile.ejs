@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Profile — Ranchi Hair Port</title>
+  <title>My Profile | Ranchi Hair Port</title>
+  <meta name="description" content="View your salon bookings, past history, and manage your Ranchi Hair Port profile.">
+  <link rel="canonical" href="http://localhost:8008/hairport/user/profile" />
+  <meta property="og:title" content="My Profile | Ranchi Hair Port">
+  <meta property="og:description" content="Manage your salon bookings and history at Ranchi Hair Port.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1974">
+  <meta name="twitter:card" content="summary">
   <link rel="icon" type="image/svg+xml" href="/src/assets/svgs/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -62,9 +68,10 @@
               <div class="flex justify-between items-start mb-3 border-b border-stone-100 dark:border-stone-800 pb-3">
                 <div>
                   <div class="flex items-center gap-2 mb-1">
-                    <span class="text-xs font-black uppercase tracking-widest text-[#E23744]"><%= new Date(order.createdAt).toLocaleDateString() %></span>
+                    <span class="text-xs font-black uppercase tracking-widest text-[#E23744]"><%= order.date %> at <%= order.time %></span>
+                    <span class="text-[10px] font-bold text-stone-400 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded-md"><%= order.status %></span>
                   </div>
-                  <p class="text-xs font-bold text-stone-500 dark:text-stone-400 flex items-center gap-1"><%= order.address %></p>
+                  <p class="text-xs font-bold text-stone-500 dark:text-stone-400 flex items-center gap-1"><%= order.location %></p>
                 </div>
               </div>
               <div class="space-y-2">
@@ -72,9 +79,15 @@
                   <div class="flex justify-between text-sm"><span class="font-bold text-stone-700 dark:text-stone-300"><%= item.name %></span><span class="font-black text-[#1C1C1C] dark:text-white">₹<%= item.price %></span></div>
                 <% }) %>
               </div>
+              <% if(order.discount > 0) { %>
+              <div class="mt-2 pt-2 flex justify-between items-center text-xs text-stone-500">
+                <span>VIP Discount (5%)</span>
+                <span class="text-[#E23744] font-bold">-₹<%= order.discount %></span>
+              </div>
+              <% } %>
               <div class="mt-3 pt-3 border-t border-stone-100 dark:border-stone-800 flex justify-between items-center">
                 <span class="text-xs font-bold text-stone-500 uppercase tracking-wider">Total Amount</span>
-                <span class="text-lg font-black text-[#E23744]">₹<%= order.amount %></span>
+                <span class="text-lg font-black text-[#E23744]">₹<%= order.total %></span>
               </div>
             </div>
           <% }) %>

@@ -3,8 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ranchi Hair Port Academy — Professional Beauty Training</title>
-  <meta name="description" content="Ranchi Hair Port Academy — Professional beauty and wellness training in Ranchi. 100% Guaranteed Placement. Learn Hair, Beauty, Nails, and Makeup." />
+  <title>Academy | Ranchi Hair Port</title>
+  <meta name="description" content="Join the Ranchi Hair Port Academy. Learn premium salon techniques, hair styling, and beauty courses from industry experts.">
+  <link rel="canonical" href="http://localhost:8008/hairport/user/academy" />
+  <meta property="og:title" content="Ranchi Hair Port Academy">
+  <meta property="og:description" content="Learn premium salon techniques, hair styling, and beauty courses from industry experts at Ranchi Hair Port.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1521590832167-7bfc17484d20?q=80&w=2070">
+  <meta property="og:url" content="http://localhost:8008/hairport/user/academy">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="/src/assets/svgs/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -136,7 +142,7 @@
         </div>
         <div class="w-[110px] sm:w-[140px] shrink-0 flex flex-col gap-2 sm:gap-3">
           <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-stone-100 dark:bg-stone-800 shadow-md">
-            <img src="<%= listing.image %>" class="w-full h-full object-cover" />
+            <img src="<%= listing.image %>" alt="<%= listing.name %> Course Image" class="w-full h-full object-cover" />
           </div>
           <div class="w-full">
              <form action="/hairport/user/cart/add/<%= listing._id %>" method="POST" style="margin:0;">

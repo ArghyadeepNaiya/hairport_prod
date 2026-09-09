@@ -37,7 +37,7 @@ function generateNext7Days() {
 }
 
 const CATEGORIES = ['All','Hair','Facials','Nails','Mani-Pedi','D-Tan','Waxing','Combos','Grooming','Bridal','Makeup'];
-const CAT_LABELS = {'All':'All Services','Hair':'Hair & Spa','Facials':'Facials & Glow','Nails':'Nails & Art','Mani-Pedi':'Mani-Pedi','D-Tan':'D-Tan Packs','Waxing':'Waxing','Combos':'Combo Offers','Grooming':"Men's Special",'Bridal':'Bridal & Wedding','Makeup':'Makeup'};
+const CAT_LABELS = {'All':'All Services','Hair':'Hair','Spa':'Spa','Facials':'Facials & Glow','Nails':'Nails & Art','Mani-Pedi':'Mani-Pedi','D-Tan':'D-Tan Packs','Waxing':'Waxing','Combos':'Combo Offers','Grooming':"Men's Special",'Bridal':'Bridal & Wedding','Makeup':'Makeup'};
 const SEARCH_PLACEHOLDERS = ['Search "Hydra Facial"','Search "Nail Extensions"','Search "Keratin Spa"','Search "Gentlemen Cut & Beard"','Search "O3+ D-Tan"','Search "Bridal Makeup"'];
 
 // ─────────────────────────────────────────────────────────────────

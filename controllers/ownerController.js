@@ -78,7 +78,30 @@ const renderDashboard = async (req, res) => {
     try {
         // Fetch all orders and populate user data to see customer details
         const orders = await Order.find({}).populate('user items').sort({createdAt: -1});
-        res.render("owner/dashboard.ejs", { orders });
+        
+        // Group orders by user
+        const groupedOrders = {};
+        for (let order of orders) {
+            // Skip if no user populated
+            if (!order.user) continue; 
+            
+            const userId = order.user._id.toString();
+            if (!groupedOrders[userId]) {
+                groupedOrders[userId] = {
+                    user: order.user,
+                    active: [],
+                    finished: []
+                };
+            }
+            
+            if (order.status === 'Completed' || order.status === 'Cancelled') {
+                groupedOrders[userId].finished.push(order);
+            } else {
+                groupedOrders[userId].active.push(order);
+            }
+        }
+
+        res.render("owner/dashboard.ejs", { groupedOrders });
     } catch(e) {
         console.error(e);
         res.status(500).send("Error loading dashboard");
@@ -112,8 +135,8 @@ const createListing = async (req, res, next) => {
 const finishOrder = async (req, res) => {
     try {
         const { id } = req.params;
-        // Deleting the order removes it from both the owner and user dashboards
-        await Order.findByIdAndDelete(id);
+        // Updating the order status retains it for history
+        await Order.findByIdAndUpdate(id, { status: 'Completed' });
         res.redirect("/hairport/owner/dashboard");
     } catch (e) {
         console.error(e);

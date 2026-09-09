@@ -26,7 +26,7 @@ router.get("/dashboard", isOwner, renderDashboard);
 // New Routes for listing creation and finishing orders
 router.get("/listing/new", isOwner, renderCreateListing);
 router.post("/listing", isOwner, createListing);
-router.delete("/order/:id", isOwner, finishOrder); 
+router.put("/order/:id/finish", isOwner, finishOrder); 
 
 router.get("/logout", logoutOwner);
 

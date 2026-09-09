@@ -40,8 +40,11 @@ const categoriesHtml = `
             <svg class="w-4 h-4 <%= currentCategory === 'All Services' ? 'text-white' : 'text-stone-500 dark:text-stone-400' %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             <span>All Services</span>
           </a>
-          <a href="/hairport/user/home?category=Hair%20%26%20Spa&gender=<%= currentGender %>" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all duration-200 <%= currentCategory === 'Hair & Spa' ? 'bg-[#E23744] text-white shadow-md shadow-rose-500/25 scale-105' : 'bg-stone-100 dark:bg-[#1E1E1E] text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800' %>">
-            <span>Hair & Spa</span>
+          <a href="/hairport/user/home?category=Hair&gender=<%= currentGender %>" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all duration-200 <%= currentCategory === 'Hair' ? 'bg-[#E23744] text-white shadow-md shadow-rose-500/25 scale-105' : 'bg-stone-100 dark:bg-[#1E1E1E] text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800' %>">
+            <span>Hair</span>
+          </a>
+          <a href="/hairport/user/home?category=Spa&gender=<%= currentGender %>" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all duration-200 <%= currentCategory === 'Spa' ? 'bg-[#E23744] text-white shadow-md shadow-rose-500/25 scale-105' : 'bg-stone-100 dark:bg-[#1E1E1E] text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800' %>">
+            <span>Spa</span>
           </a>
           <a href="/hairport/user/home?category=Facials%20%26%20Glow&gender=<%= currentGender %>" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all duration-200 <%= currentCategory === 'Facials & Glow' ? 'bg-[#E23744] text-white shadow-md shadow-rose-500/25 scale-105' : 'bg-stone-100 dark:bg-[#1E1E1E] text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800' %>">
             <span>Facials & Glow</span>
