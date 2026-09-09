@@ -66,7 +66,7 @@ const renderLogin = (req, res) => {
 const verifyPin = (req, res) => {
     const { pin } = req.body;
     
-    if (pin === '8009') {
+    if (pin === process.env.OWNER_PIN) {
         const token = jwt.sign({ role: 'owner' }, process.env.SUPERSECRET, { expiresIn: "1d" });
         res.cookie("owner_token", token, { httpOnly: true });
         return res.redirect("/hairport/owner/dashboard");
