@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy | Ranchi Hair Port</title>
+  <meta name="description" content="Learn how Ranchi Hair Port collects, uses, and protects your personal information." />
   <link rel="icon" type="image/svg+xml" href="/src/assets/svgs/favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
   <style type="text/tailwindcss">
@@ -20,80 +20,162 @@
       document.documentElement.classList.remove('dark');
     }
   </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .toc-link.active { color: #E23744; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
 </head>
-<body class="font-sans antialiased bg-[#FAF9F5] dark:bg-[#0F0F0F] text-[#1C1C1C] dark:text-[#F8F8F8] flex flex-col min-h-screen transition-colors duration-300">
+<body class="antialiased bg-[#FAF9F5] dark:bg-[#0F0F0F] text-[#1C1C1C] dark:text-[#F8F8F8] min-h-screen transition-colors duration-300" style="font-family: 'Plus Jakarta Sans', sans-serif;">
   
-  <header class="sticky top-0 z-50 bg-stone-950 border-b border-stone-800 transition-colors duration-300">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-stone-950 border-b border-stone-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between py-3 md:py-0 md:h-16">
+      <div class="flex items-center justify-between h-16">
         <div class="flex items-center gap-3">
-          <button onclick="window.history.back()" aria-label="Go Back" class="w-9 h-9 rounded-xl flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-colors">
+          <button onclick="window.history.back()" aria-label="Go Back" class="w-9 h-9 rounded-xl flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-colors cursor-pointer">
             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
           </button>
-          <div class="flex items-center gap-1.5">
-            <span class="text-sm sm:text-xl font-black tracking-tight text-white">RANCHI HAIR PORT</span>
-          </div>
+          <span class="text-sm sm:text-lg font-black tracking-tight text-white">RANCHI HAIR PORT</span>
         </div>
-        <div class="flex items-center gap-2">
-          <button data-action="toggle-theme" aria-label="Toggle Theme" class="w-9 h-9 rounded-xl flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-colors">
-            <svg id="theme-icon" class="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-          </button>
-        </div>
+        <button data-action="toggle-theme" aria-label="Toggle Theme" class="w-9 h-9 rounded-xl flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-colors cursor-pointer">
+          <svg id="theme-icon" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
       </div>
     </div>
   </header>
 
-  <main class="flex-1 max-w-4xl mx-auto w-full px-6 py-12">
-    <h1 class="text-3xl font-black text-stone-900 dark:text-white mb-8">Privacy Policy</h1>
-    
-    <div class="space-y-8 text-stone-600 dark:text-stone-300 text-sm leading-relaxed">
-        <section class="space-y-3">
-            <h2 class="text-lg font-extrabold text-stone-800 dark:text-stone-100">1. Information We Collect</h2>
-            <p>We may collect personal information such as your name, email address, phone number, and physical address when you register for an account, book an appointment, or contact us. We also collect non-personal information such as browser type, operating system, and IP address to improve our services.</p>
-        </section>
-
-        <section class="space-y-3">
-            <h2 class="text-lg font-extrabold text-stone-800 dark:text-stone-100">2. How We Use Your Information</h2>
-            <p>The information we collect is used to:</p>
-            <ul class="list-disc pl-5 space-y-1">
-                <li>Process your bookings and manage your appointments.</li>
-                <li>Send you appointment confirmations and reminders.</li>
-                <li>Improve our website, customer service, and overall user experience.</li>
-                <li>Communicate with you regarding offers, promotions, and updates (only if you have opted in).</li>
-            </ul>
-        </section>
-
-        <section class="space-y-3">
-            <h2 class="text-lg font-extrabold text-stone-800 dark:text-stone-100">3. Data Security</h2>
-            <p>We implement appropriate technical and organizational security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. We use secure servers and standard encryption techniques to safeguard your data.</p>
-        </section>
-
-        <section class="space-y-3">
-            <h2 class="text-lg font-extrabold text-stone-800 dark:text-stone-100">4. Sharing Your Information</h2>
-            <p>We do not sell, trade, or rent your personal identification information to others. We may share generic aggregated demographic information not linked to any personal identification information with our business partners and trusted affiliates for the purposes outlined above.</p>
-        </section>
-
-        <section class="space-y-3">
-            <h2 class="text-lg font-extrabold text-stone-800 dark:text-stone-100">5. Changes to This Privacy Policy</h2>
-            <p>Ranchi Hair Port has the discretion to update this privacy policy at any time. We encourage users to frequently check this page for any changes. You acknowledge and agree that it is your responsibility to review this privacy policy periodically and become aware of modifications.</p>
-        </section>
-
-        <section class="space-y-3">
-            <h2 class="text-lg font-extrabold text-stone-800 dark:text-stone-100">Contact Us</h2>
-            <p>If you have any questions about this Privacy Policy, the practices of this site, or your dealings with this site, please contact us at our Lalpur or Lalji Hirji Road centers.</p>
-        </section>
+  <!-- Hero -->
+  <section class="relative bg-[#0A0A0A] text-white py-24 sm:py-32 overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-rose-600/8 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-[10px] font-black uppercase tracking-[0.3em] text-stone-500 mb-6">Legal</p>
+      <h1 class="text-5xl sm:text-7xl md:text-8xl font-black leading-[0.9] tracking-tighter mb-6" style="font-family: 'Playfair Display', serif; font-style: italic;">
+        Privacy<br/>Policy
+      </h1>
+      <p class="text-xs font-bold uppercase tracking-widest text-stone-500">Last updated — September 2026</p>
     </div>
-  </main>
+  </section>
+
+  <!-- Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <div class="flex gap-16">
+      
+      <!-- Sticky TOC (desktop only) -->
+      <aside class="hidden lg:block w-56 shrink-0">
+        <nav class="sticky top-24 space-y-6">
+          <p class="text-[10px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-4">On this page</p>
+          <a href="#section-01" class="toc-link flex items-baseline gap-3 group cursor-pointer">
+            <span class="text-[10px] font-black text-[#E23744] tracking-widest">01</span>
+            <span class="text-xs font-bold text-stone-500 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">Information We Collect</span>
+          </a>
+          <a href="#section-02" class="toc-link flex items-baseline gap-3 group cursor-pointer">
+            <span class="text-[10px] font-black text-[#E23744] tracking-widest">02</span>
+            <span class="text-xs font-bold text-stone-500 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">How We Use It</span>
+          </a>
+          <a href="#section-03" class="toc-link flex items-baseline gap-3 group cursor-pointer">
+            <span class="text-[10px] font-black text-[#E23744] tracking-widest">03</span>
+            <span class="text-xs font-bold text-stone-500 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">Data Security</span>
+          </a>
+          <a href="#section-04" class="toc-link flex items-baseline gap-3 group cursor-pointer">
+            <span class="text-[10px] font-black text-[#E23744] tracking-widest">04</span>
+            <span class="text-xs font-bold text-stone-500 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">Sharing Info</span>
+          </a>
+          <a href="#section-05" class="toc-link flex items-baseline gap-3 group cursor-pointer">
+            <span class="text-[10px] font-black text-[#E23744] tracking-widest">05</span>
+            <span class="text-xs font-bold text-stone-500 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">Policy Changes</span>
+          </a>
+          <a href="#section-06" class="toc-link flex items-baseline gap-3 group cursor-pointer">
+            <span class="text-[10px] font-black text-[#E23744] tracking-widest">06</span>
+            <span class="text-xs font-bold text-stone-500 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">Contact Us</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Sections -->
+      <div class="flex-1 space-y-8">
+
+        <div id="section-01" class="scroll-mt-24 relative bg-white dark:bg-[#141414] rounded-2xl p-8 sm:p-10 border border-stone-200 dark:border-stone-800 overflow-hidden">
+          <span class="absolute top-4 right-6 text-7xl font-black text-stone-100 dark:text-stone-800/50 select-none pointer-events-none leading-none" style="font-family: 'Playfair Display', serif;">01</span>
+          <h2 class="relative text-xl font-black text-stone-900 dark:text-white mb-4" style="font-family: 'Playfair Display', serif;">Information We Collect</h2>
+          <p class="relative text-sm leading-relaxed text-stone-600 dark:text-stone-300">We may collect personal information such as your name, email address, phone number, and physical address when you register for an account, book an appointment, or contact us. We also collect non-personal information such as browser type, operating system, and IP address to improve our services.</p>
+        </div>
+
+        <div id="section-02" class="scroll-mt-24 relative bg-white dark:bg-[#141414] rounded-2xl p-8 sm:p-10 border border-stone-200 dark:border-stone-800 overflow-hidden">
+          <span class="absolute top-4 right-6 text-7xl font-black text-stone-100 dark:text-stone-800/50 select-none pointer-events-none leading-none" style="font-family: 'Playfair Display', serif;">02</span>
+          <h2 class="relative text-xl font-black text-stone-900 dark:text-white mb-4" style="font-family: 'Playfair Display', serif;">How We Use Your Information</h2>
+          <div class="relative text-sm leading-relaxed text-stone-600 dark:text-stone-300 space-y-2">
+            <p>The information we collect is used to:</p>
+            <ul class="list-none space-y-2 ml-0">
+              <li class="flex items-start gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-[#E23744] mt-1.5 shrink-0"></span>Process your bookings and manage your appointments.</li>
+              <li class="flex items-start gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-[#E23744] mt-1.5 shrink-0"></span>Send you appointment confirmations and reminders.</li>
+              <li class="flex items-start gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-[#E23744] mt-1.5 shrink-0"></span>Improve our website, customer service, and overall user experience.</li>
+              <li class="flex items-start gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-[#E23744] mt-1.5 shrink-0"></span>Communicate with you regarding offers, promotions, and updates (only if you have opted in).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="section-03" class="scroll-mt-24 relative bg-white dark:bg-[#141414] rounded-2xl p-8 sm:p-10 border border-stone-200 dark:border-stone-800 overflow-hidden">
+          <span class="absolute top-4 right-6 text-7xl font-black text-stone-100 dark:text-stone-800/50 select-none pointer-events-none leading-none" style="font-family: 'Playfair Display', serif;">03</span>
+          <h2 class="relative text-xl font-black text-stone-900 dark:text-white mb-4" style="font-family: 'Playfair Display', serif;">Data Security</h2>
+          <p class="relative text-sm leading-relaxed text-stone-600 dark:text-stone-300">We implement appropriate technical and organizational security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. We use secure servers and standard encryption techniques to safeguard your data.</p>
+        </div>
+
+        <div id="section-04" class="scroll-mt-24 relative bg-white dark:bg-[#141414] rounded-2xl p-8 sm:p-10 border border-stone-200 dark:border-stone-800 overflow-hidden">
+          <span class="absolute top-4 right-6 text-7xl font-black text-stone-100 dark:text-stone-800/50 select-none pointer-events-none leading-none" style="font-family: 'Playfair Display', serif;">04</span>
+          <h2 class="relative text-xl font-black text-stone-900 dark:text-white mb-4" style="font-family: 'Playfair Display', serif;">Sharing Your Information</h2>
+          <p class="relative text-sm leading-relaxed text-stone-600 dark:text-stone-300">We do not sell, trade, or rent your personal identification information to others. We may share generic aggregated demographic information not linked to any personal identification information with our business partners and trusted affiliates for the purposes outlined above.</p>
+        </div>
+
+        <div id="section-05" class="scroll-mt-24 relative bg-white dark:bg-[#141414] rounded-2xl p-8 sm:p-10 border border-stone-200 dark:border-stone-800 overflow-hidden">
+          <span class="absolute top-4 right-6 text-7xl font-black text-stone-100 dark:text-stone-800/50 select-none pointer-events-none leading-none" style="font-family: 'Playfair Display', serif;">05</span>
+          <h2 class="relative text-xl font-black text-stone-900 dark:text-white mb-4" style="font-family: 'Playfair Display', serif;">Changes to This Privacy Policy</h2>
+          <p class="relative text-sm leading-relaxed text-stone-600 dark:text-stone-300">Ranchi Hair Port has the discretion to update this privacy policy at any time. We encourage users to frequently check this page for any changes. You acknowledge and agree that it is your responsibility to review this privacy policy periodically and become aware of modifications.</p>
+        </div>
+
+        <div id="section-06" class="scroll-mt-24 relative bg-white dark:bg-[#141414] rounded-2xl p-8 sm:p-10 border border-stone-200 dark:border-stone-800 overflow-hidden">
+          <span class="absolute top-4 right-6 text-7xl font-black text-stone-100 dark:text-stone-800/50 select-none pointer-events-none leading-none" style="font-family: 'Playfair Display', serif;">06</span>
+          <h2 class="relative text-xl font-black text-stone-900 dark:text-white mb-4" style="font-family: 'Playfair Display', serif;">Contact Us</h2>
+          <p class="relative text-sm leading-relaxed text-stone-600 dark:text-stone-300 mb-5">If you have any questions about this Privacy Policy, the practices of this site, or your dealings with this site, please contact us at either of our centers.</p>
+          <div class="relative grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-stone-50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-800">
+              <h3 class="font-bold text-[#E23744] text-sm mb-1">Lalpur Center</h3>
+              <p class="text-xs text-stone-500">Opposite Nucleus Mall, Ranchi</p>
+            </div>
+            <div class="p-4 rounded-xl bg-stone-50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-800">
+              <h3 class="font-bold text-[#E23744] text-sm mb-1">Lalji Hirji Road Center</h3>
+              <p class="text-xs text-stone-500">Lalji Hirji Road, Ranchi</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const themeBtn = document.querySelector('[data-action="toggle-theme"]');
       if(themeBtn) {
-          themeBtn.addEventListener('click', () => {
-              const isDark = document.documentElement.classList.toggle('dark');
-              localStorage.setItem('theme', isDark ? 'dark' : 'light');
-          });
+        themeBtn.addEventListener('click', () => {
+          const isDark = document.documentElement.classList.toggle('dark');
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
       }
+
+      // Active TOC highlight on scroll
+      const sections = document.querySelectorAll('[id^="section-"]');
+      const tocLinks = document.querySelectorAll('.toc-link');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            tocLinks.forEach(l => l.classList.remove('active'));
+            const active = document.querySelector('.toc-link[href="#' + entry.target.id + '"]');
+            if (active) active.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -60% 0px' });
+      sections.forEach(s => observer.observe(s));
     });
   </script>
 </body>

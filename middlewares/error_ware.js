@@ -1,12 +1,13 @@
 const error_handler = (err, req, res, next) => {
-    console.error("🔥 SERVER ERROR:", err); // <-- This prints the error to your terminal
+    console.error("🔥 SERVER ERROR:", err);
     
-    err.statuscode = err.statuscode || 500;
-    err.message = err.message || "some inter server error occured";
-    return res.status(err.statuscode).json({
-       success: false,
-       message: err.message,
-       stack: err.stack 
+    const statusCode = err.statusCode || err.statuscode || 500;
+    const message = err.message || "An internal server error occurred";
+
+    // Never expose stack traces to the client in production
+    return res.status(statusCode).render('error.ejs', {
+        statusCode,
+        message
     });
 }
 module.exports = error_handler;

@@ -1,4 +1,3 @@
-console.log("APP.JS LOADED FROM:", __filename);
 const express=require("express");
 const app=express();
 const databaseconnect = require('./config/config.js');
@@ -8,8 +7,8 @@ const path = require('path');
 app.set('view engine', 'ejs'); 
 // (Best Practice) Explicitly define where your EJS files live
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.urlencoded({ extended: true })); 
-// (Optional but recommended) Parse incoming JSON data as well
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // parse JSON body
 app.use(express.static(path.join(__dirname, 'public')));
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));

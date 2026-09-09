@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error | Ranchi Hair Port</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:where(.dark, .dark *));
+  </style>
+  <link rel="stylesheet" href="/tailwind_base.css" />
+  <script>
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
+</head>
+<body class="bg-[#0A0A0A] text-white min-h-screen flex items-center justify-center p-6" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+  <div class="text-center max-w-md">
+    <h1 class="text-8xl font-black tracking-tighter mb-4" style="font-family: 'Playfair Display', serif; font-style: italic;"><%= statusCode %></h1>
+    <p class="text-lg text-stone-400 mb-8"><%= message %></p>
+    <a href="/hairport/user/home" class="inline-flex items-center gap-2 bg-[#E23744] hover:bg-[#CB202D] text-white font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-full transition-all hover:scale-105">
+      Return Home
+    </a>
+  </div>
+</body>
+</html>

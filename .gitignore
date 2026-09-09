@@ -1,0 +1,15 @@
+node_modules/
+.env
+*.log
+temp.js
+temp_data.js
+temp_script.js
+build_*.js
+check_*.js
+migrate_*.js
+update_seed*.js
+recover_ejs.js
+seed.js
+seed_academy.js
+update_seed.js
+requirement.txt
