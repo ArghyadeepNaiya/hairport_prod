@@ -20,10 +20,11 @@ const orderSchema = new mongoose.Schema({
     subtotal: { type: Number, required: true },
     discount: { type: Number, default: 0 },
     total: { type: Number, required: true },
+    remark: { type: String },
     status: {
         type: String,
         default: 'Pending',
-        enum: ['Pending', 'Confirmed', 'Completed', 'Cancelled']
+        enum: ['Pending', 'Confirmed', 'Completed', 'Cancelled', 'Rejected']
     }
 }, { timestamps: true });
 

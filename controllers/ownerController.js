@@ -144,6 +144,17 @@ const finishOrder = async (req, res) => {
     }
 };
 
+const rejectOrder = async (req, res) => {
+    try {
+        const orderId = req.params.id;
+        await Order.findByIdAndUpdate(orderId, { status: 'Rejected' });
+        res.redirect("/hairport/owner/dashboard");
+    } catch (e) {
+        console.error(e);
+        res.status(500).send("Error rejecting order");
+    }
+};
+
 const logoutOwner = (req, res) => {
     res.cookie("owner_token", "", { maxAge: 0 });
     res.redirect("/hairport/owner/login");
@@ -156,5 +167,6 @@ module.exports = {
     renderCreateListing,
     createListing,
     finishOrder,
+    rejectOrder,
     logoutOwner
 };

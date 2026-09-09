@@ -14,6 +14,15 @@ router.post("/login", login);
 router.get("/forgot", (req, res) => {
     res.render("user/forgot_password.ejs"); 
 });
+router.get("/privacy", (req, res) => {
+    res.render("privacy.ejs");
+});
+router.get("/terms", (req, res) => {
+    res.render("terms.ejs");
+});
+router.get("/info", (req, res) => {
+    res.render("info.ejs");
+});
 router.get("/profile",isLoggedIn,profile);
 // Add this import at the top
 const { addToCart, viewCart, renderSchedule, placeOrder,removeFromCart } = require("../controllers/cartController.js");

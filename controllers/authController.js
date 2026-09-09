@@ -195,6 +195,8 @@ const renderAcademy = async (req, res, next) => {
         let cartItemCount = 0;
         let cartTotal = 0;
         let userSubscribed = false;
+        let cartItemIds = [];
+        let purchasedItemIds = [];
 
         if (req.cookies && req.cookies.token) {
             try {
@@ -206,12 +208,16 @@ const renderAcademy = async (req, res, next) => {
                     if (cart && cart.items.length > 0) {
                         cartItemCount = cart.items.length;
                         cart.items.forEach(item => cartTotal += item.price);
+                        cartItemIds = cart.items.map(item => item._id.toString());
                     }
+                    
+                    const orders = await Order.find({ user: user._id, status: { $ne: 'Cancelled' } });
+                    purchasedItemIds = orders.flatMap(order => order.items.map(id => id.toString()));
                 }
             } catch (err) { }
         }
         
-        res.render("academy.ejs", { academy_listings, cartItemCount, cartTotal, userSubscribed });
+        res.render("academy.ejs", { academy_listings, cartItemCount, cartTotal, userSubscribed, cartItemIds, purchasedItemIds });
     } catch(e) {
         return next(new ExpressError(e.message, 500));
     }

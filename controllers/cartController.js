@@ -14,6 +14,21 @@ const addToCart = async (req, res, next) => {
             cart = new Cart({ user: userId, items: [] });
         }
         
+        const listing = await Listing.findById(listingId);
+        if (listing && listing.category === 'Academy') {
+            // Check if already in cart
+            if (cart.items.some(item => item.toString() === listingId.toString())) {
+                return res.redirect(req.get('Referrer') || '/hairport/user/home');
+            }
+            
+            // Check if already purchased
+            const orders = await Order.find({ user: userId, status: { $ne: 'Cancelled' } });
+            const purchasedItemIds = orders.flatMap(order => order.items.map(id => id.toString()));
+            if (purchasedItemIds.includes(listingId.toString())) {
+                return res.redirect(req.get('Referrer') || '/hairport/user/home');
+            }
+        }
+        
         cart.items.push(listingId);
         await cart.save();
         
@@ -67,7 +82,28 @@ const viewCart = async (req, res, next) => {
 
 const renderSchedule = async (req, res, next) => {
     try {
-        res.render("schedule.ejs");
+        const userId = req.user._id;
+        const cart = await Cart.findOne({ user: userId }).populate('items');
+        let subtotal = 0;
+        let groupedItems = [];
+        
+        if (cart && cart.items.length > 0) {
+            cart.items.forEach(item => subtotal += item.price);
+            
+            const itemMap = new Map();
+            cart.items.forEach(item => {
+                if (item && item._id) {
+                    const idStr = item._id.toString();
+                    if (itemMap.has(idStr)) {
+                        itemMap.get(idStr).quantity += 1;
+                    } else {
+                        itemMap.set(idStr, { item: item, quantity: 1 });
+                    }
+                }
+            });
+            groupedItems = Array.from(itemMap.values());
+        }
+        res.render("schedule.ejs", { subtotal, groupedItems });
     } catch (e) {
         return next(new ExpressError(e.message, 500));
     }
@@ -76,11 +112,28 @@ const renderSchedule = async (req, res, next) => {
 const placeOrder = async (req, res, next) => {
     try {
         const userId = req.user._id;
-        const { location, date, time } = req.body;
+        const { location, date, time, remark } = req.body;
 
         const cart = await Cart.findOne({ user: userId }).populate('items');
         if (!cart || cart.items.length === 0) {
             return res.redirect("/hairport/user/home");
+        }
+
+        if (!date || !time || !location) {
+            return next(new ExpressError('Please select a location, date, and time.', 400));
+        }
+
+        // Validate that the date is within the next 7 days
+        const selectedDate = new Date(date);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // start of today
+        
+        const maxDate = new Date(today);
+        maxDate.setDate(maxDate.getDate() + 7); // 7 days from today
+        maxDate.setHours(23, 59, 59, 999); // end of the 7th day
+        
+        if (selectedDate < today || selectedDate > maxDate) {
+            return next(new ExpressError('Bookings must be scheduled within the next 7 days.', 400));
         }
 
         const user = await Customer.findById(userId);
@@ -104,7 +157,8 @@ const placeOrder = async (req, res, next) => {
             time,
             subtotal,
             discount,
-            total
+            total,
+            remark
         });
 
         await newOrder.save();

@@ -19,6 +19,13 @@
     @custom-variant dark (&:where(.dark, .dark *));
   </style>
   <link rel="stylesheet" href="/tailwind_base.css" />
+  <script>
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
 </head>
 <body class="font-sans antialiased bg-[#FAF9F5] dark:bg-[#0F0F0F] text-[#1C1C1C] dark:text-[#F8F8F8] flex flex-col min-h-screen transition-colors duration-300">
 
@@ -273,7 +280,7 @@
     const themeBtn = document.querySelector('[data-action="toggle-theme"]');
     if(themeBtn) {
         themeBtn.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
     }
 
