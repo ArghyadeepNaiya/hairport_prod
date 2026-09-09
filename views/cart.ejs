@@ -97,11 +97,33 @@
             <div>
               <h4 class="text-xs font-black text-[#1C1C1C] dark:text-white line-clamp-2 leading-tight"><%= item.name %></h4>
             </div>
-            <div class="flex items-center justify-between">
+            <% 
+              let countInCart = 0;
+              if (typeof cart !== 'undefined' && cart.items) {
+                cart.items.forEach(cartItem => {
+                  if (cartItem && cartItem._id && cartItem._id.toString() === item._id.toString()) {
+                    countInCart += 1;
+                  }
+                });
+              }
+            %>
+            <div class="flex items-center justify-between mt-1">
               <span class="text-sm font-black text-[#1C1C1C] dark:text-white">₹<%= item.price %></span>
-              <form action="/hairport/user/cart/add/<%= item._id %>" method="POST" style="margin:0;">
-                  <button type="submit" class="px-2.5 py-1 bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-700 text-[#1C1C1C] dark:text-white text-[10px] font-bold rounded-lg transition-colors uppercase tracking-wider">Add</button>
-              </form>
+              <div class="cart-control" data-listing-id="<%= item._id %>">
+                <% if (countInCart > 0) { %>
+                  <div class="flex items-center justify-between w-20 h-7 border border-[#E23744] rounded-lg overflow-hidden bg-transparent">
+                    <button type="button" class="btn-remove w-1/3 h-full flex items-center justify-center text-[#E23744] hover:bg-rose-50 transition-colors">
+                      <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <span class="count-display w-1/3 text-center text-[#E23744] font-black text-[10px]"><%= countInCart %></span>
+                    <button type="button" class="btn-add w-1/3 h-full flex items-center justify-center text-[#E23744] hover:bg-rose-50 transition-colors">
+                      <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                  </div>
+                <% } else { %>
+                  <button type="button" class="btn-add w-16 h-7 bg-white dark:bg-stone-900 text-[#E23744] font-black text-[10px] uppercase tracking-wider rounded-lg border border-[#E23744]/40 hover:bg-rose-50 dark:hover:bg-rose-950/40 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-1"><span>ADD</span>+</button>
+                <% } %>
+              </div>
             </div>
           </div>
         </div>
@@ -130,7 +152,10 @@
         <a href="/hairport/user/home" class="inline-block mt-4 px-6 py-2 bg-[#E23744] text-white font-bold rounded-xl shadow-lg">Browse Services</a>
     </div>
 <% } else { %>
-    <% cart.items.forEach(item => { %>
+    <% groupedItems.forEach(group => { 
+        const item = group.item;
+        const countInCart = group.quantity;
+    %>
     <div class="bg-white dark:bg-[#1E1E1E] rounded-2xl p-4 flex gap-4 border border-stone-200 dark:border-stone-800 relative shadow-sm">
       <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800 shrink-0">
         <img src="<%= item.image %>" alt="<%= item.name %> Service Image" class="w-full h-full object-cover" />
@@ -139,11 +164,6 @@
         <div>
           <div class="flex justify-between items-start gap-2 mb-1">
             <h3 class="text-sm font-extrabold text-[#1C1C1C] dark:text-white leading-tight line-clamp-2"><%= item.name %></h3>
-            <form action="/hairport/user/cart/remove/<%= item._id %>" method="POST" style="margin:0;">
-                <button type="submit" class="w-7 h-7 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-rose-50 hover:text-rose-600 transition-colors flex items-center justify-center shrink-0">
-                  <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                </button>
-            </form>
           </div>
           <p class="text-[10px] font-bold text-stone-400 uppercase tracking-wider"><%= item.category %></p>
           
@@ -165,9 +185,20 @@
           </div>
           <% } %>
         </div>
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between mt-2">
           <div class="flex items-baseline gap-1.5">
             <span class="text-base font-black text-[#1C1C1C] dark:text-white">₹<%= item.price %></span>
+          </div>
+          <div class="cart-control" data-listing-id="<%= item._id %>">
+            <div class="flex items-center justify-between w-24 h-8 border-2 border-[#E23744] rounded-lg overflow-hidden bg-transparent">
+              <button type="button" class="btn-remove w-1/3 h-full flex items-center justify-center text-[#E23744] hover:bg-rose-50 transition-colors">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              </button>
+              <span class="count-display w-1/3 text-center text-[#E23744] font-black text-xs"><%= countInCart %></span>
+              <button type="button" class="btn-add w-1/3 h-full flex items-center justify-center text-[#E23744] hover:bg-rose-50 transition-colors">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -245,6 +276,44 @@
             document.documentElement.classList.toggle('dark');
         });
     }
+
+    // Cart Interactions
+    const attachCartListeners = () => {
+        const cartControls = document.querySelectorAll('.cart-control');
+        cartControls.forEach(control => {
+            control.addEventListener('click', function(e) {
+                const addBtn = e.target.closest('.btn-add');
+                const removeBtn = e.target.closest('.btn-remove');
+
+                if (addBtn || removeBtn) {
+                    e.preventDefault();
+                    
+                    const listingId = this.dataset.listingId;
+                    const actionUrl = addBtn ? `/hairport/user/cart/add/${listingId}` : `/hairport/user/cart/remove/${listingId}`;
+
+                    // Show temporary loading state on the button
+                    if (addBtn) addBtn.style.opacity = '0.5';
+                    if (removeBtn) removeBtn.style.opacity = '0.5';
+
+                    // Perform fetch and reload the page with new cart HTML seamlessly
+                    fetch(actionUrl, { method: 'POST', redirect: 'follow' })
+                    .then(res => res.text())
+                    .then(html => {
+                        const doc = new DOMParser().parseFromString(html, 'text/html');
+                        
+                        // Replace the entire body content with the new rendered cart
+                        document.body.innerHTML = doc.body.innerHTML;
+                        
+                        // Re-attach listeners to the new DOM elements
+                        attachCartListeners();
+                    });
+                }
+            });
+        });
+    };
+    
+    // Attach listeners on load
+    document.addEventListener('DOMContentLoaded', attachCartListeners);
   </script>
 
 </body>

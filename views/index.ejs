@@ -223,8 +223,8 @@
                         let countInCart = 0;
                         if (typeof cartItems !== 'undefined' && cartItems) {
                           cartItems.forEach(item => {
-                            if (item.listing && item.listing._id && item.listing._id.toString() === listing._id.toString()) {
-                              countInCart += item.quantity;
+                            if (item && item._id && item._id.toString() === listing._id.toString()) {
+                              countInCart += 1;
                             }
                           });
                         }

@@ -32,10 +32,25 @@ const viewCart = async (req, res, next) => {
         let cartItemIds = [];
         let subtotal = 0; // Changed from 'total' to 'subtotal'
         
+        let groupedItems = [];
+        
         if (cart && cart.items.length > 0) {
             cartItems = cart.items;
             cartItemIds = cartItems.map(item => item._id); 
             cartItems.forEach(item => subtotal += item.price);
+            
+            const itemMap = new Map();
+            cartItems.forEach(item => {
+                if (item && item._id) {
+                    const idStr = item._id.toString();
+                    if (itemMap.has(idStr)) {
+                        itemMap.get(idStr).quantity += 1;
+                    } else {
+                        itemMap.set(idStr, { item: item, quantity: 1 });
+                    }
+                }
+            });
+            groupedItems = Array.from(itemMap.values());
         }
 
         const recommendations = await Listing.aggregate([
@@ -43,8 +58,8 @@ const viewCart = async (req, res, next) => {
             { $sample: { size: 3 } }
         ]);
         
-        // Pass 'subtotal' to the EJS template to fix the undefined error
-        res.render("cart.ejs", { cart: { items: cartItems }, subtotal, recommendations });
+        // Pass 'subtotal' and 'groupedItems' to the EJS template
+        res.render("cart.ejs", { cart: { items: cartItems }, groupedItems, subtotal, recommendations });
     } catch (e) {
         return next(new ExpressError(e.message, 500));
     }
