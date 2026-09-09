@@ -64,10 +64,29 @@ document.addEventListener("DOMContentLoaded", () => {
             flyer.classList.add('animate-x');
             ball.classList.add('animate-y');
 
-            // Wait 600ms for animation to finish, then actually submit the form to the backend
+            // Wait 600ms for animation to finish, then submit via AJAX to prevent hard refresh
             setTimeout(() => {
                 flyer.remove();
-                this.submit(); 
+                
+                fetch(this.action, { method: this.method || 'POST', redirect: 'follow' })
+                    .then(response => response.text())
+                    .then(html => {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+                        
+                        // Grab the updated popup from the response
+                        const newPopup = doc.querySelector('.floating-cart-popup');
+                        const existingPopup = document.querySelector('.floating-cart-popup');
+                        
+                        if (newPopup) {
+                            if (existingPopup) {
+                                existingPopup.replaceWith(newPopup);
+                            } else {
+                                document.body.appendChild(newPopup);
+                            }
+                        }
+                    })
+                    .catch(err => console.error("Error adding to cart:", err));
             }, 600); 
         });
     });

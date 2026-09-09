@@ -24,8 +24,8 @@ app.use('/hairport/owner', ownerRoutes);
 
 
 
-app.use('/', (req, res) => {
-  res.status(200).json({ data: 'JWTauth server ;)' });
+app.get('/', (req, res) => {
+  res.redirect('/hairport/user/home');
 });
 
 
