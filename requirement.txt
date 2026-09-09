@@ -1,0 +1,239 @@
+bcrypt
+express
+ejs
+mongoos
+cookie_parser
+nodemon
+dotenv
+email-validator
+jsonwebtoken
+
+
+<div class="services-grid">
+            <!-- Card 1 -->
+            <div class="service-card">
+                <div class="card-top">
+                    <div class="tags">
+                        <span class="tag pink">NAILS</span>
+                        <span class="tag dot">Female</span>
+                    </div>
+                    <div class="image-placeholder">
+                        <img src="" alt="Insert Image Here" class="service-img">
+                    </div>
+                </div>
+                <h3>Nail Art</h3>
+                <div class="price-row">
+                    <span class="current-price">₹99</span>
+                    <span class="old-price">₹199</span>
+                    <span class="discount">50% OFF</span>
+                    <span class="rating"><i class="fa-solid fa-star"></i> 4.7 <span class="reviews">(320)</span></span>
+                </div>
+                <div class="duration"><i class="fa-regular fa-clock"></i> 20 mins</div>
+                <p class="description">Custom nail art designs - floral, geometric, minimalist or glitter patterns on natural...</p>
+                <button class="add-btn">ADD +</button>
+                <div class="execution-steps">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Show Execution Steps (3) <i class="fa-solid fa-chevron-down right-arrow"></i>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="service-card">
+                <div class="card-top">
+                    <div class="tags">
+                        <span class="tag pink">NAILS</span>
+                        <span class="tag dot">Female</span>
+                    </div>
+                    <div class="image-placeholder">
+                        <img src="" alt="Insert Image Here" class="service-img">
+                    </div>
+                </div>
+                <h3>Cat Eye Nail Extension</h3>
+                <div class="price-row">
+                    <span class="current-price">₹399</span>
+                    <span class="old-price">₹699</span>
+                    <span class="discount">43% OFF</span>
+                    <span class="rating"><i class="fa-solid fa-star"></i> 4.8 <span class="reviews">(180)</span></span>
+                </div>
+                <div class="duration"><i class="fa-regular fa-clock"></i> 45 mins</div>
+                <p class="description">Magnetic cat eye gel polish with mesmerizing 3D shimmer effect that shift...</p>
+                <button class="add-btn">ADD +</button>
+                <div class="execution-steps">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Show Execution Steps (3) <i class="fa-solid fa-chevron-down right-arrow"></i>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="service-card">
+                <div class="card-top">
+                    <div class="tags">
+                        <span class="tag pink">NAILS</span>
+                        <span class="tag gold"><i class="fa-solid fa-star"></i> BESTSELLER</span>
+                        <span class="tag dot">Female</span>
+                    </div>
+                    <div class="image-placeholder">
+                        <img src="" alt="Insert Image Here" class="service-img">
+                    </div>
+                </div>
+                <h3>Gel Extension with Gel Polish</h3>
+                <div class="price-row">
+                    <span class="current-price">₹499</span>
+                    <span class="old-price">₹899</span>
+                    <span class="discount">44% OFF</span>
+                    <span class="rating"><i class="fa-solid fa-star"></i> 4.8 <span class="reviews">(350)</span></span>
+                </div>
+                <div class="duration"><i class="fa-regular fa-clock"></i> 60 mins</div>
+                <p class="description">Full UV builder gel extensions with premium gel polish finish - lasts 3-4 wee...</p>
+                <button class="add-btn">ADD +</button>
+                <div class="execution-steps">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Show Execution Steps (4) <i class="fa-solid fa-chevron-down right-arrow"></i>
+                </div>
+            </div>
+            
+            <!-- Card 4 -->
+            <div class="service-card">
+                <div class="card-top">
+                    <div class="tags">
+                        <span class="tag pink">NAILS</span>
+                        <span class="tag gold"><i class="fa-solid fa-star"></i> BESTSELLER</span>
+                        <span class="tag dot">Female</span>
+                    </div>
+                    <div class="image-placeholder">
+                        <img src="" alt="Insert Image Here" class="service-img">
+                    </div>
+                </div>
+                <h3>Acrylic Nail Extension with Gel Polish</h3>
+                <div class="price-row">
+                    <span class="current-price">₹599</span>
+                    <span class="old-price">₹999</span>
+                    <span class="discount">40% OFF</span>
+                    <span class="rating"><i class="fa-solid fa-star"></i> 4.9 <span class="reviews">(290)</span></span>
+                </div>
+                <div class="duration"><i class="fa-regular fa-clock"></i> 75 mins</div>
+                <p class="description">Premium acrylic sculpted extensions with gel polish - strongest and longest lasting...</p>
+                <button class="add-btn">ADD +</button>
+                <div class="execution-steps">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Show Execution Steps (4) <i class="fa-solid fa-chevron-down right-arrow"></i>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="service-card">
+                <div class="card-top">
+                    <div class="tags">
+                        <span class="tag pink">HAIR</span>
+                        <span class="tag gold"><i class="fa-solid fa-star"></i> BESTSELLER</span>
+                        <span class="tag dot">Unisex</span>
+                    </div>
+                    <div class="image-placeholder">
+                        <img src="" alt="Insert Image Here" class="service-img">
+                    </div>
+                </div>
+                <h3>Global Hair Colour</h3>
+                <div class="price-row">
+                    <span class="current-price">₹1999</span>
+                    <span class="old-price">₹3499</span>
+                    <span class="discount">43% OFF</span>
+                    <span class="rating"><i class="fa-solid fa-star"></i> 4.8 <span class="reviews">(680)</span></span>
+                </div>
+                <div class="duration"><i class="fa-regular fa-clock"></i> 90 mins</div>
+                <p class="description">Full head global hair color transformation with L'Oreal / Schwarzkopf professional...</p>
+                <button class="add-btn">ADD +</button>
+                <div class="execution-steps">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Show Execution Steps (3) <i class="fa-solid fa-chevron-down right-arrow"></i>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="service-card">
+                <div class="card-top">
+                    <div class="tags">
+                        <span class="tag pink">HAIR</span>
+                        <span class="tag gold"><i class="fa-solid fa-star"></i> BESTSELLER</span>
+                        <span class="tag dot">Unisex</span>
+                    </div>
+                    <div class="image-placeholder">
+                        <img src="" alt="Insert Image Here" class="service-img">
+                    </div>
+                </div>
+                <h3 class="highlight-title">Global Highlights</h3>
+                <div class="price-row">
+                    <span class="current-price">₹1999</span>
+                    <span class="old-price">₹3999</span>
+                    <span class="discount">50% OFF</span>
+                    <span class="rating"><i class="fa-solid fa-star"></i> 4.9 <span class="reviews">(520)</span></span>
+                </div>
+                <div class="duration"><i class="fa-regular fa-clock"></i> 120 mins</div>
+                <p class="description">Full head multi-tone balayage or foil highlights for a sun-kissed dimensional...</p>
+                <button class="add-btn">ADD +</button>
+                <div class="execution-steps">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Show Execution Steps (3) <i class="fa-solid fa-chevron-down right-arrow"></i>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Ranchi Hair Port</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/profile.css">
+</head>
+<body>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="avatar">
+                <i class="fa-solid fa-user-tie"></i>
+            </div>
+            <h2><%= user.username || 'Puskar Kumar' %></h2>
+            <p class="hp-coins"><i class="fa-solid fa-coins"></i> <%= user.hp_coins %> HP Coins</p>
+        </div>
+
+        <div class="profile-details">
+            <div class="detail-group">
+                <label>Email Address</label>
+                <p><%= user.email %></p>
+            </div>
+            <div class="detail-group">
+                <label>Phone Number</label>
+                <p><%= user.phone %></p>
+            </div>
+            <div class="detail-group">
+                <label>Active Subscription</label>
+                <p class="subscription-status <%= user.has_subscription === 'yes' ? 'active-sub' : '' %>">
+                    <%= user.has_subscription.toUpperCase() %>
+                </p>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 40px; margin-bottom: 15px; font-size: 1.2rem;">My Bookings</h3>
+        <% if(typeof orders !== 'undefined' && orders.length > 0) { %>
+            <% orders.forEach(order => { %>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #eee;">
+                    <p><strong>Location:</strong> <%= order.location %></p>
+                    <p><strong>Date/Time:</strong> <%= order.date %> at <%= order.time %></p>
+                    <p><strong>Status:</strong> <span style="color: #e84358; font-weight: bold;"><%= order.status %></span></p>
+                    <hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;">
+                    <p style="font-size: 0.85rem; color: #555;">
+                        Original: ₹<%= order.subtotal %> | Discount: -₹<%= order.discount %> 
+                    </p>
+                    <p><strong>Total Paid: ₹<%= order.total %></strong></p>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p style="color: #777; font-size: 0.9rem;">No upcoming bookings found.</p>
+        <% } %>
+    </div>
+
+</body>
+</html>

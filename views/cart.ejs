@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart | Ranchi Hair Port</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/cart.css">
+</head>
+<body>
+    <div class="checkout-container">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="step active">1. Cart Summary</div>
+            <div class="step">2. Schedule & Location</div>
+            <div class="step">3. Confirmation</div>
+        </div>
+
+        <div class="card">
+            <h2>Your Selected Services</h2>
+            
+            <% if (cart.items.length === 0) { %>
+                <p class="empty-state">Your cart is empty. <br><a href="/hairport/user/home">Browse Services</a></p>
+            <% } else { %>
+                <div class="cart-items">
+                    <% cart.items.forEach(item => { %>
+                        <div class="cart-item" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px dashed #eee;">
+                            <div style="display: flex; align-items: center; flex: 1;">
+                                <img src="<%= item.image %>" alt="<%= item.name %>" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover; margin-right: 15px;">
+                                <div class="item-details">
+                                    <h4 style="font-size: 1rem; margin-bottom: 3px;"><%= item.name %></h4>
+                                    <p style="font-size: 0.8rem; color: #777;"><%= item.category %></p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div class="item-price" style="font-weight: 600; font-size: 1.1rem;">₹<%= item.price %></div>
+                                
+                                <!-- REMOVE BUTTON -->
+                                <form action="/hairport/user/cart/remove/<%= item._id %>" method="POST" style="margin: 0;">
+                                    <button type="submit" style="background: rgba(232, 67, 88, 0.1); border: 1px solid #e84358; color: #e84358; width: 35px; height: 35px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s;">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+                
+                <div class="total-row">
+                    <span>Subtotal:</span>
+                    <span>₹<%= subtotal %></span>
+                </div>
+                
+                <a href="/hairport/user/cart/schedule" class="btn primary-btn">Proceed to Schedule <i class="fa-solid fa-arrow-right"></i></a>
+            <% } %>
+        </div>
+
+        <!-- Existing Cart Items Loop Ends Above This -->
+        
+        <!-- Frequently Bought Together Section -->
+        <% if (typeof recommendations !== 'undefined' && recommendations.length > 0) { %>
+            <div class="recommendations-section" style="margin-top: 40px; padding-top: 25px; border-top: 2px dashed #eee;">
+                <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; color: #111;">Frequently Bought Together</h3>
+                <div class="recommendations-grid" style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none;">
+                    <% recommendations.forEach(item => { %>
+                        <div class="rec-card" style="min-width: 220px; flex: 1; border: 1px solid #eaeaea; border-radius: 12px; padding: 12px; background: #fff;">
+                            <img src="<%= item.image %>" alt="<%= item.name %>" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+                            <h4 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #222;"><%= item.name %></h4>
+                            <p style="font-size: 1rem; font-weight: 700; color: #111; margin-bottom: 12px;">₹<%= item.price %></p>
+                            
+                            <form action="/hairport/user/cart/add/<%= item._id %>" method="POST" style="margin: 0;">
+                                <button type="submit" style="width: 100%; padding: 10px; background: transparent; border: 1px solid #e84358; color: #e84358; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#fff1f2'" onmouseout="this.style.background='transparent'">
+                                    ADD +
+                                </button>
+                            </form>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        <% } %>
+
+    </div>
+</body>
+</html>

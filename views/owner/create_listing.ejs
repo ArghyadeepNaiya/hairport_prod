@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Listing | Ranchi Hair Port</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/owner.css">
+</head>
+<body class="owner-body">
+    
+    <div class="dashboard-nav">
+        <a href="/hairport/owner/dashboard" class="btn outline" style="border: none;">← Back to Dashboard</a>
+    </div>
+
+    <div class="owner-card">
+        <h3>Create New Service Listing</h3>
+        <form action="/hairport/owner/listing" method="POST">
+            <div class="form-group">
+                <label>Service Name</label>
+                <input type="text" name="name" required placeholder="e.g. Classic Haircut">
+            </div>
+            
+            <div class="form-group row">
+                <div>
+                    <label>Price (₹)</label>
+                    <input type="number" name="price" required min="0">
+                </div>
+                <div>
+                    <label>Initial Rating (0-5)</label>
+                    <input type="number" name="rating" step="0.1" min="0" max="5" value="5.0">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div>
+                    <label>Target Gender</label>
+                    <select name="gender">
+                        <option value="All Genders">All Genders</option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Unisex">Unisex</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Category</label>
+                    <select name="category">
+                        <option value="Hair & Spa">Hair & Spa</option>
+                        <option value="Facials & Glow">Facials & Glow</option>
+                        <option value="Nails & Art">Nails & Art</option>
+                        <option value="Mani-Pedi">Mani-Pedi</option>
+                        <option value="D-Tan Packs">D-Tan Packs</option>
+                        <option value="Waxing">Waxing</option>
+                        <option value="Combo Offers">Combo Offers</option>
+                        <option value="Men's Special">Men's Special</option>
+                        <option value="Bridal & Wedding">Bridal & Wedding</option>
+                        <option value="Makeup">Makeup</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Image URL</label>
+                <input type="url" name="image" required placeholder="https://example.com/image.jpg">
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea name="description" required rows="3" placeholder="Describe the service..."></textarea>
+            </div>
+
+            <button type="submit" class="btn">Publish Listing</button>
+        </form>
+    </div>
+
+</body>
+</html>

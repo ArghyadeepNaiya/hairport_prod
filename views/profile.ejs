@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Ranchi Hair Port</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/profile.css">
+</head>
+<body>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="avatar">
+                <i class="fa-solid fa-user-tie"></i>
+            </div>
+            <h2><%= user.username || 'Puskar Kumar' %></h2>
+            <p class="hp-coins"><i class="fa-solid fa-coins"></i> <%= user.hp_coins %> HP Coins</p>
+        </div>
+
+        <div class="profile-details">
+            <div class="detail-group">
+                <label>Email Address</label>
+                <p><%= user.email %></p>
+            </div>
+            <div class="detail-group">
+                <label>Phone Number</label>
+                <p><%= user.phone %></p>
+            </div>
+            <div class="detail-group">
+                <label>Active Subscription</label>
+                <p class="subscription-status <%= user.has_subscription === 'yes' ? 'active-sub' : '' %>">
+                    <%= user.has_subscription.toUpperCase() %>
+                </p>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 40px; margin-bottom: 15px; font-size: 1.2rem;">My Bookings</h3>
+        <% if(typeof orders !== 'undefined' && orders.length > 0) { %>
+            <% orders.forEach(order => { %>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #eee;">
+                    <p><strong>Location:</strong> <%= order.location %></p>
+                    <p><strong>Date/Time:</strong> <%= order.date %> at <%= order.time %></p>
+                    <p><strong>Status:</strong> <span style="color: #e84358; font-weight: bold;"><%= order.status %></span></p>
+                    <hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;">
+                    <p style="font-size: 0.85rem; color: #555;">
+                        Original: ₹<%= order.subtotal %> | Discount: -₹<%= order.discount %> 
+                    </p>
+                    <p><strong>Total Paid: ₹<%= order.total %></strong></p>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p style="color: #777; font-size: 0.9rem;">No upcoming bookings found.</p>
+        <% } %>
+
+        <!-- Restored Action Buttons -->
+        <div class="profile-actions">
+            <a href="/hairport/user/home" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> Back to Salon</a>
+            <a href="/hairport/user/logout" class="btn btn-danger">Log Out <i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+    </div>
+
+</body>
+</html>

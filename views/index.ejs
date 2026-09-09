@@ -1,0 +1,215 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranchi Hair Port</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="nav-left">
+            <div class="logo">
+                <h1>RANCHI HAIR PORT <span class="badge">SALON</span></h1>
+            </div>
+            <div class="location-dropdown" style="display: flex; align-items: center; position: relative;">
+                <i class="fa-solid fa-location-dot" style="margin-right: 8px;"></i>
+                <select id="location-select" style="background: transparent; border: none; font-size: 1rem; font-weight: 500; cursor: pointer; outline: none; color: inherit; appearance: none; padding-right: 15px;">
+                    <option value="Lalpur Center">Lalpur Center</option>
+                    <option value="Lalji Hirji Road Center">Lalji Hirji Road Center</option>
+                </select>
+                <i class="fa-solid fa-chevron-down" style="position: absolute; right: 0; pointer-events: none; font-size: 0.8rem;"></i>
+            </div>
+        </div>
+        
+        <div class="nav-right">
+            <!-- <button class="gold-btn"><i class="fa-solid fa-crown"></i> SALON GOLD <span>5% OFF</span></button> -->
+            
+            <!-- Dark Mode Toggle Button -->
+            <button class="icon-btn" id="theme-toggle">
+                <i class="fa-regular fa-moon" id="theme-icon"></i>
+            </button>
+            
+            <!-- User Profile / Signup Routing Logic (EJS) -->
+            <!-- <a href="<%= locals.user ? '/profile' : '/signup' %>" class="icon-btn link-btn">
+                <i class="fa-regular fa-user"></i>
+            </a> -->
+            <a href="/hairport/user/profile" class="icon-btn link-btn">
+                <i class="fa-regular fa-user"></i>
+            </a>
+            
+            <!-- <button class="icon-btn"><i class="fa-solid fa-bag-shopping"></i></button> -->
+             <a href="/hairport/user/cart" class="icon-btn link-btn"><i class="fa-solid fa-bag-shopping"></i></a>
+        </div>
+    </header>
+
+    <!-- Hero Section with Video Background -->
+    <section class="hero-section">
+        <div class="video-container">
+            <video autoplay loop muted playsinline class="bg-video">
+                <source src="/videos/ranchi_hairport_animation.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <div class="search-overlay">
+            <!-- Converted to a form to trigger the GET request -->
+            <form action="/hairport/user/home" method="GET" class="search-bar">
+                <button type="submit" style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <input type="text" name="search" placeholder='Search "O3+ D-Tan"' value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>">
+            </form>
+        </div>
+    </section>
+
+    <!-- Main Categories Filter (Preserves Gender) -->
+    <nav class="categories-bar">
+        <a href="/hairport/user/home?category=All%20Services&gender=<%= currentGender %>" class="category-btn <%= currentCategory === 'All Services' ? 'active' : '' %>"><i class="fa-solid fa-sparkles"></i> All Services</a>
+        
+        <a href="/hairport/user/home?category=Hair%20%26%20Spa&gender=<%= currentGender %>" class="category-btn <%= currentCategory === 'Hair & Spa' ? 'active' : '' %>"><i class="fa-solid fa-scissors"></i> Hair & Spa</a>
+        
+        <a href="/hairport/user/home?category=Facials%20%26%20Glow&gender=<%= currentGender %>" class="category-btn <%= currentCategory === 'Facials & Glow' ? 'active' : '' %>"><i class="fa-regular fa-face-smile"></i> Facials & Glow</a>
+        
+        <a href="/hairport/user/home?category=Nails%20%26%20Art&gender=<%= currentGender %>" class="category-btn <%= currentCategory === 'Nails & Art' ? 'active' : '' %>"><i class="fa-solid fa-hand"></i> Nails & Art</a>
+        
+        <a href="/hairport/user/home?category=Mani-Pedi&gender=<%= currentGender %>" class="category-btn <%= currentCategory === 'Mani-Pedi' ? 'active' : '' %>"><i class="fa-solid fa-shoe-prints"></i> Mani-Pedi</a>
+        
+        <a href="/hairport/user/home?category=D-Tan%20Packs&gender=<%= currentGender %>" class="category-btn <%= currentCategory === 'D-Tan Packs' ? 'active' : '' %>"><i class="fa-solid fa-droplet"></i> D-Tan Packs</a>
+        
+        <a href="/hairport/user/home?category=Waxing&gender=<%= currentGender %>" class="category-btn <%= currentCategory === 'Waxing' ? 'active' : '' %>"><i class="fa-solid fa-layer-group"></i> Waxing</a>
+        
+        <a href="/hairport/user/home?category=Combo%20Offers&gender=<%= currentGender %>" class="category-btn <%= currentCategory === 'Combo Offers' ? 'active' : '' %>"><i class="fa-solid fa-gift"></i> Combo Offers</a>
+        
+        <a href="/hairport/user/home?category=Men's%20Special&gender=<%= currentGender %>" class="category-btn <%= currentCategory === "Men's Special" ? 'active' : '' %>"><i class="fa-solid fa-user-tie"></i> Men's Special</a>
+    </nav>
+
+    <!-- Sub Filters (Preserves Category) -->
+    <div class="sub-filters">
+        <div class="gender-filter">
+            <span class="label">GENDER:</span>
+            <!-- Encoded currentCategory to ensure spaces/ampersands don't break the URL -->
+            <a href="/hairport/user/home?category=<%= encodeURIComponent(currentCategory) %>&gender=All Genders" class="filter-btn <%= currentGender === 'All Genders' ? 'active' : '' %>" style="text-decoration: none;">All Genders</a>
+            <a href="/hairport/user/home?category=<%= encodeURIComponent(currentCategory) %>&gender=Female" class="filter-btn <%= currentGender === 'Female' ? 'active' : '' %>" style="text-decoration: none;">Female</a>
+            <a href="/hairport/user/home?category=<%= encodeURIComponent(currentCategory) %>&gender=Male" class="filter-btn <%= currentGender === 'Male' ? 'active' : '' %>" style="text-decoration: none;">Male</a>
+        </div>
+    </div>
+
+    <main class="content-container">
+        <div class="section-header">
+            <h2>All Salon Packages <span class="count"><%= totalListings %></span></h2>
+            <!-- Active Center Display (Syncs via your script.js) -->
+            <span class="active-center">Active Center: <strong id="active-center-display">Lalpur Center</strong></span>
+        </div>
+
+        <div class="services-grid">
+            <% for(let listing of all_listings) { %>
+                <div class="service-card">
+                    <div class="card-top">
+                        <div class="tags">
+                            <span class="tag pink"><%= listing.category %></span>
+                            <span class="tag dot"><%= listing.gender %></span>
+                        </div>
+                        <div class="image-placeholder">
+                            <img src="<%= listing.image %>" alt="<%= listing.name %>" class="service-img" style="display: block;">
+                        </div>
+                    </div>
+                    <h3><%= listing.name %></h3>
+                    <div class="price-row">
+                        <span class="current-price">₹<%= listing.price %></span>
+                        <span class="rating"><i class="fa-solid fa-star"></i> <%= listing.rating %></span>
+                    </div>
+                    <p class="description"><%= listing.description %></p>
+                    <form action="/hairport/user/cart/add/<%= listing._id %>" method="POST" style="margin:0; padding:0;">
+                        <button type="submit" class="add-btn">ADD +</button>
+                    </form>
+                </div>
+            <% } %>
+        </div>
+
+        <!-- Google-Style Pagination Links -->
+        <% if (totalPages > 1) { %>
+            <div class="pagination">
+                <% if (currentPage > 1) { %>
+                    <a href="/hairport/user/home?page=<%= currentPage - 1 %>&category=<%= encodeURIComponent(currentCategory) %>&gender=<%= currentGender %>&search=<%= searchQuery %>"><i class="fa-solid fa-chevron-left"></i></a>
+                <% } %>
+                
+                <% for(let i = 1; i <= totalPages; i++) { %>
+                    <a href="/hairport/user/home?page=<%= i %>&category=<%= encodeURIComponent(currentCategory) %>&gender=<%= currentGender %>&search=<%= searchQuery %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+                <% } %>
+
+                <% if (currentPage < totalPages) { %>
+                    <a href="/hairport/user/home?page=<%= currentPage + 1 %>&category=<%= encodeURIComponent(currentCategory) %>&gender=<%= currentGender %>&search=<%= searchQuery %>"><i class="fa-solid fa-chevron-right"></i></a>
+                <% } %>
+            </div>
+        <% } %>
+    </main>
+    
+    <!-- Footer Banner Section -->
+    <section class="academy-banner-container">
+        <div class="academy-banner">
+            <span class="admission-tag"><i class="fa-solid fa-circle"></i> ADMISSION OPEN</span>
+            <h2>Build Your Future in Beauty</h2>
+            <p>Join Ranchi Hairport Academy. Professional training with 100% practicals and job assistance. Limited seats available!</p>
+            
+            <!-- Converted button to an anchor tag link -->
+            <a href="/hairport/user/academy" class="explore-btn" style="text-decoration: none; display: inline-block;">
+                EXPLORE ACADEMY <i class="fa-solid fa-chevron-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Floating Cart Popup -->
+    <% if (cartItemCount > 0) { %>
+        <div class="floating-cart-popup">
+            <div class="cart-info-left">
+                <div class="cart-icon-wrapper">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge"><%= cartItemCount %></span>
+                </div>
+                <div class="cart-price-details">
+                    <span class="cart-total">₹<%= cartTotal %></span>
+                    <span class="cart-subtitle">
+                        <span id="popup-location-display">Lalpur Center</span> 
+                        <% if (userSubscribed) { %>
+                            <span class="discount-text">• 5% VIP Discount Applies at Checkout</span>
+                        <% } %>
+                    </span>
+                </div>
+            </div>
+            <a href="/hairport/user/cart" class="btn view-cart-btn">VIEW CART <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    <% } %>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+        <div class="footer-links">
+            <a href="#">Info</a>
+            <span class="divider">-</span>
+            <a href="#">Support</a>
+            <span class="divider">-</span>
+            <a href="#">Contact Options</a>
+        </div>
+        <div class="footer-links secondary">
+            <a href="#">Terms of Use</a>
+            <span class="divider">-</span>
+            <a href="#">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <script src="/scripts/script.js"></script>
+</body>
+</html>
+
+
+<!-- now as we know that the home page is the static content....i want you to make a owner dashboard that should be accessed with a pin lets say 8009 and there will appear a function to create listing  -->

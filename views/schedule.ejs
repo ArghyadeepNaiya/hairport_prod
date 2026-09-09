@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule Service | Ranchi Hair Port</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/cart.css">
+</head>
+<body>
+    <div class="checkout-container">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="step completed">1. Cart Summary</div>
+            <div class="step active">2. Schedule & Location</div>
+            <div class="step">3. Confirmation</div>
+        </div>
+
+        <div class="card">
+            <h2>Select Details</h2>
+            
+            <form action="/hairport/user/cart/book" method="POST">
+                <div class="form-group">
+                    <label>Choose Salon Center</label>
+                    <select name="location" required>
+                        <option value="" disabled selected>Select a location...</option>
+                        <option value="Lalpur Center (Opposite Nucleus Mall)">Lalpur Center (Opposite Nucleus Mall)</option>
+                        <option value="Lalji Hirji Road Center">Lalji Hirji Road Center</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Preferred Date</label>
+                        <input type="date" name="date" id="booking-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Time</label>
+                        <select name="time" required>
+                            <option value="" disabled selected>Select a time slot...</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="01:00 PM">01:00 PM</option>
+                            <option value="02:00 PM">02:00 PM</option>
+                            <option value="03:00 PM">03:00 PM</option>
+                            <option value="04:00 PM">04:00 PM</option>
+                            <option value="05:00 PM">05:00 PM</option>
+                            <option value="06:00 PM">06:00 PM</option>
+                            <option value="07:00 PM">07:00 PM</option>
+                            <option value="08:00 PM">08:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="/hairport/user/cart" class="btn outline-btn">Back</a>
+                    <button type="submit" class="btn primary-btn">Book Now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateInput = document.getElementById('booking-date');
+            
+            // Get today's date and format it as YYYY-MM-DD
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            
+            const formattedToday = `${yyyy}-${mm}-${dd}`;
+            
+            // Lock the calendar to prevent past dates
+            dateInput.min = formattedToday;
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,248 @@
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.academy-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+/* Header Elements */
+.academy-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  color: #111;
+}
+.academy-header h3 {
+  font-size: 1.1rem;
+  color: #444;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.academy-header .location {
+  color: #777;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.status-badge {
+  display: inline-block;
+  background-color: #fdf0ef;
+  color: #e84358;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+.status-badge i {
+  font-size: 0.5rem;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.quick-info {
+  display: flex;
+  gap: 30px;
+  color: #555;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.quick-info i {
+  color: #999;
+  margin-right: 5px;
+}
+.quick-info small {
+  display: block;
+  margin-left: 20px;
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* Features Grid */
+.features-grid {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+.feature-box {
+  flex: 1;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #eee;
+}
+.feature-box .f-text {
+  font-size: 0.8rem;
+  line-height: 1.3;
+  color: #111;
+  font-weight: 600;
+}
+.feature-box .f-text span {
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+.f-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.8rem;
+}
+
+.green {
+  background-color: #f0fff4;
+  border-color: #c6f6d5;
+}
+.green .f-text span {
+  color: #047857;
+}
+.green .f-icon {
+  background: #10b981;
+}
+
+.pink {
+  background-color: #fff5f7;
+  border-color: #fed7e2;
+}
+.pink .f-text span {
+  color: #be185d;
+}
+.pink .f-icon {
+  background: #ed64a6;
+}
+
+.yellow {
+  background-color: #fffff0;
+  border-color: #fef08a;
+}
+.yellow .f-text span {
+  color: #b45309;
+}
+.yellow .f-icon {
+  background: #f59e0b;
+}
+
+/* Course Cards */
+.courses-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  border-top: 1px solid #eee;
+  padding-top: 30px;
+}
+
+.course-card {
+  display: flex;
+  border: 1px solid #eaeaea;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: #fff;
+}
+.course-details {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.tags {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.tag-bestseller {
+  background: #fff1f2;
+  color: #e11d48;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+.tag-duration {
+  color: #777;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.course-details h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.current {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #111;
+}
+.original {
+  font-size: 0.85rem;
+  color: #a1a1aa;
+  text-decoration: line-through;
+}
+
+.desc {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.show-more {
+  color: #e84358;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.course-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 110px;
+}
+.course-action img {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.enroll-btn {
+  width: 100%;
+  padding: 8px 0;
+  background: white;
+  border: 1px solid #e84358;
+  color: #e84358;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.enroll-btn:hover {
+  background: #fff1f2;
+}

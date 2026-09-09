@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #faf9f6;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.signup-container {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 450px;
+  border: 1px solid #f0f0f0;
+}
+.logo {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #4b413c;
+}
+.logo h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+.logo .badge {
+  font-size: 0.7rem;
+  background-color: #f39c12;
+  color: black;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #555;
+}
+.form-control {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.form-control:focus {
+  border-color: #e84358;
+}
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #e84358;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+.submit-btn:hover {
+  background-color: #d13649;
+}
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #777;
+}
+.login-link a {
+  color: #e84358;
+  text-decoration: none;
+  font-weight: 600;
+}

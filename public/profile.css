@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #faf9f6;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.profile-container {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid #f0f0f0;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    background-color: #ffeef0;
+    color: #e84358;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    margin: 0 auto 15px;
+}
+
+.profile-header h2 {
+    font-size: 1.5rem;
+    color: #4b413c;
+    margin-bottom: 5px;
+}
+
+.hp-coins {
+    color: #f39c12;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.detail-group {
+    margin-bottom: 20px;
+}
+
+.detail-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.detail-group p {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #222;
+}
+
+.subscription-status {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: #eee;
+    color: #555;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.active-sub {
+    background-color: #d1fae5;
+    color: #059669;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+.btn-outline {
+    border: 1px solid #ddd;
+    color: #555;
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: #f8f9fa;
+    border-color: #ccc;
+}
+
+.btn-danger {
+    background-color: #e84358;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #d13649;
+}
