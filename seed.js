@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Listing = require('./models/listing.js'); // Ensure this path matches your structure
 
 // Connect to your database
-mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/port')
+mongoose.connect(process.env.MONGO_url || 'mongodb://127.0.0.1:27017/port')
 .then(() => console.log('Database Connected for Seeding'))
 .catch(err => console.log('Database Connection Error:', err));
 

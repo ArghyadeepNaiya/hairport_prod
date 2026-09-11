@@ -16,6 +16,8 @@ const homepage = async (req, res, next) => {
         const targetCategory = req.query.category || 'All Services';
         const targetGender = req.query.gender || 'All Genders';
         const searchQuery = req.query.search;
+        const currentSort = req.query.sort || 'popular';
+        const currentOffers = req.query.offers || 'false';
         
         // 1. Pagination Setup (9 items per page)
         const page = parseInt(req.query.page) || 1;
@@ -36,10 +38,20 @@ const homepage = async (req, res, next) => {
             ];
         }
         
+        if (currentOffers === 'true') {
+            query.original_price = { $exists: true, $gt: 0 };
+        }
+        
+        let sortOptions = {};
+        if (currentSort === 'price_low') sortOptions.price = 1;
+        else if (currentSort === 'price_high') sortOptions.price = -1;
+        else if (currentSort === 'rating') sortOptions.rating = -1;
+        else sortOptions = { is_bestseller: -1, rating: -1 }; // Default popular
+        
         // 2. Fetch total count and limited listings
         const totalListings = await Listing.countDocuments(query);
         const totalPages = Math.ceil(totalListings / limit);
-        const all_listings = await Listing.find(query).skip(skip).limit(limit);
+        const all_listings = await Listing.find(query).sort(sortOptions).skip(skip).limit(limit);
         
         let cartItemCount = 0;
         let cartTotal = 0;
@@ -70,6 +82,8 @@ const homepage = async (req, res, next) => {
             currentCategory: targetCategory,
             currentGender: targetGender,
             searchQuery: searchQuery || '',
+            currentSort: currentSort,
+            currentOffers: currentOffers,
             cartItemCount,
             cartTotal,
             cartItems,

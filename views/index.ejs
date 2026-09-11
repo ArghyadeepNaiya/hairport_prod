@@ -108,8 +108,11 @@
             <svg class="w-4 h-4 <%= currentCategory === 'All Services' ? 'text-white' : 'text-stone-500 dark:text-stone-400' %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             <span>All Services</span>
           </a>
-          <a href="/hairport/user/home?category=Hair%20%26%20Spa&gender=<%= currentGender %>" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all duration-200 <%= currentCategory === 'Hair & Spa' ? 'bg-[#E23744] text-white shadow-md shadow-rose-500/25 scale-105' : 'bg-stone-100 dark:bg-[#1E1E1E] text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800' %>">
-            <span>Hair & Spa</span>
+          <a href="/hairport/user/home?category=Hair&gender=<%= currentGender %>" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all duration-200 <%= currentCategory === 'Hair' ? 'bg-[#E23744] text-white shadow-md shadow-rose-500/25 scale-105' : 'bg-stone-100 dark:bg-[#1E1E1E] text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800' %>">
+            <span>Hair</span>
+          </a>
+          <a href="/hairport/user/home?category=Spa&gender=<%= currentGender %>" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all duration-200 <%= currentCategory === 'Spa' ? 'bg-[#E23744] text-white shadow-md shadow-rose-500/25 scale-105' : 'bg-stone-100 dark:bg-[#1E1E1E] text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800' %>">
+            <span>Spa</span>
           </a>
           <a href="/hairport/user/home?category=Facials%20%26%20Glow&gender=<%= currentGender %>" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all duration-200 <%= currentCategory === 'Facials & Glow' ? 'bg-[#E23744] text-white shadow-md shadow-rose-500/25 scale-105' : 'bg-stone-100 dark:bg-[#1E1E1E] text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800' %>">
             <span>Facials & Glow</span>
@@ -143,13 +146,13 @@
         <div class="flex items-center gap-1.5" id="gender-filters-container">
           <span class="text-xs font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wider hidden sm:inline mr-1">GENDER:</span>
           
-          <a href="/hairport/user/home?category=<%= encodeURIComponent(currentCategory) %>&gender=All Genders" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all <%= currentGender === 'All Genders' ? 'bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-950 shadow-sm' : 'bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200/60 dark:hover:bg-stone-700/60 border border-stone-200 dark:border-stone-700' %>" style="text-decoration: none;">All Genders</a>
-          <a href="/hairport/user/home?category=<%= encodeURIComponent(currentCategory) %>&gender=Female" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all <%= currentGender === 'Female' ? 'bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-950 shadow-sm' : 'bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200/60 dark:hover:bg-stone-700/60 border border-stone-200 dark:border-stone-700' %>" style="text-decoration: none;">Female</a>
-          <a href="/hairport/user/home?category=<%= encodeURIComponent(currentCategory) %>&gender=Male" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all <%= currentGender === 'Male' ? 'bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-950 shadow-sm' : 'bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200/60 dark:hover:bg-stone-700/60 border border-stone-200 dark:border-stone-700' %>" style="text-decoration: none;">Male</a>
+          <a href="/hairport/user/home?category=<%= encodeURIComponent(currentCategory) %>&gender=All Genders&sort=<%= currentSort %>&offers=<%= currentOffers %>" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all <%= currentGender === 'All Genders' ? 'bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-950 shadow-sm' : 'bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200/60 dark:hover:bg-stone-700/60 border border-stone-200 dark:border-stone-700' %>" style="text-decoration: none;">All Genders</a>
+          <a href="/hairport/user/home?category=<%= encodeURIComponent(currentCategory) %>&gender=Female&sort=<%= currentSort %>&offers=<%= currentOffers %>" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all <%= currentGender === 'Female' ? 'bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-950 shadow-sm' : 'bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200/60 dark:hover:bg-stone-700/60 border border-stone-200 dark:border-stone-700' %>" style="text-decoration: none;">Female</a>
+          <a href="/hairport/user/home?category=<%= encodeURIComponent(currentCategory) %>&gender=Male&sort=<%= currentSort %>&offers=<%= currentOffers %>" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all <%= currentGender === 'Male' ? 'bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-950 shadow-sm' : 'bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200/60 dark:hover:bg-stone-700/60 border border-stone-200 dark:border-stone-700' %>" style="text-decoration: none;">Male</a>
 
         </div>
         <div class="flex items-center gap-3">
-          <button id="offers-only-btn" data-action="toggle-offers" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-700">
+          <button id="offers-only-btn" data-action="toggle-offers" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all <%= currentOffers === 'true' ? 'bg-[#E23744] text-white border-[#E23744] shadow-sm shadow-rose-900/20' : 'bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-700 hover:bg-stone-50 dark:hover:bg-stone-700' %>">
             <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg><span>Offers Only</span>
           </button>
           <div class="relative flex items-center">
@@ -157,10 +160,10 @@
               <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>
             </span>
             <select id="sort-select" class="pl-8 pr-4 py-1.5 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-200 text-xs font-bold rounded-xl border border-stone-200 dark:border-stone-700 focus:outline-none focus:ring-2 focus:ring-rose-500/30 cursor-pointer appearance-none">
-              <option value="popular">Popularity</option>
-              <option value="price_low">Price: Low to High</option>
-              <option value="price_high">Price: High to Low</option>
-              <option value="rating">Highest Rated</option>
+              <option value="popular" <%= currentSort === 'popular' ? 'selected' : '' %>>Popularity</option>
+              <option value="price_low" <%= currentSort === 'price_low' ? 'selected' : '' %>>Price: Low to High</option>
+              <option value="price_high" <%= currentSort === 'price_high' ? 'selected' : '' %>>Price: High to Low</option>
+              <option value="rating" <%= currentSort === 'rating' ? 'selected' : '' %>>Highest Rated</option>
             </select>
           </div>
         </div>
@@ -265,15 +268,23 @@
               
 <% if (totalPages > 1) { %>
   <% if (currentPage > 1) { %>
-      <a href="/hairport/user/home?page=<%= currentPage - 1 %>&category=<%= encodeURIComponent(currentCategory) %>&gender=<%= currentGender %>&search=<%= searchQuery %>" class="p-2 rounded-xl bg-white dark:bg-[#1E1E1E] border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors"><</a>
+      <a href="/hairport/user/home?page=<%= currentPage - 1 %>&category=<%= encodeURIComponent(currentCategory) %>&gender=<%= currentGender %>&search=<%= searchQuery %>&sort=<%= currentSort %>&offers=<%= currentOffers %>" class="p-2 rounded-xl bg-white dark:bg-[#1E1E1E] border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors" aria-label="Previous page">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </a>
   <% } %>
   <div class="flex items-center gap-1.5 flex-wrap justify-center">
   <% for(let i = 1; i <= totalPages; i++) { %>
-      <a href="/hairport/user/home?page=<%= i %>&category=<%= encodeURIComponent(currentCategory) %>&gender=<%= currentGender %>&search=<%= searchQuery %>" class="w-10 h-10 flex items-center justify-center rounded-xl font-bold text-sm transition-all <%= currentPage === i ? 'bg-[#E23744] text-white shadow-md shadow-rose-900/30' : 'bg-white dark:bg-[#1E1E1E] text-stone-600 dark:text-stone-300 border border-stone-200 dark:border-stone-800 hover:bg-stone-50 dark:hover:bg-stone-900' %>"><%= i %></a>
+      <a href="/hairport/user/home?page=<%= i %>&category=<%= encodeURIComponent(currentCategory) %>&gender=<%= currentGender %>&search=<%= searchQuery %>&sort=<%= currentSort %>&offers=<%= currentOffers %>" class="w-10 h-10 flex items-center justify-center rounded-xl font-bold text-sm transition-all <%= currentPage === i ? 'bg-[#E23744] text-white shadow-md shadow-rose-900/30' : 'bg-white dark:bg-[#1E1E1E] text-stone-600 dark:text-stone-300 border border-stone-200 dark:border-stone-800 hover:bg-stone-50 dark:hover:bg-stone-900' %>"><%= i %></a>
   <% } %>
   </div>
   <% if (currentPage < totalPages) { %>
-      <a href="/hairport/user/home?page=<%= currentPage + 1 %>&category=<%= encodeURIComponent(currentCategory) %>&gender=<%= currentGender %>&search=<%= searchQuery %>" class="p-2 rounded-xl bg-white dark:bg-[#1E1E1E] border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors">></a>
+      <a href="/hairport/user/home?page=<%= currentPage + 1 %>&category=<%= encodeURIComponent(currentCategory) %>&gender=<%= currentGender %>&search=<%= searchQuery %>&sort=<%= currentSort %>&offers=<%= currentOffers %>" class="p-2 rounded-xl bg-white dark:bg-[#1E1E1E] border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors" aria-label="Next page">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
   <% } %>
 <% } %>
 
@@ -596,6 +607,74 @@
                 localStorage.setItem('hairport_active_location', this.value);
             });
         }
+        // AJAX Sort and Filter Logic
+        async function fetchAndUpdate(url) {
+            const grid = document.getElementById('catalog-grid');
+            if(grid) grid.style.opacity = '0.5';
+            
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('Network response was not ok');
+                const html = await res.text();
+                const doc = new DOMParser().parseFromString(html, 'text/html');
+                
+                // Elements to replace with fresh HTML
+                const ids = ['category-pills-container', 'gender-filters-container', 'offers-only-btn', 'sort-select', 'catalog-container'];
+                ids.forEach(id => {
+                    const newEl = doc.getElementById(id);
+                    const oldEl = document.getElementById(id);
+                    if (newEl && oldEl) {
+                        oldEl.outerHTML = newEl.outerHTML;
+                    }
+                });
+                
+                window.history.pushState({}, '', url);
+                
+                // Re-attach cart listeners to new add-to-cart buttons
+                if(typeof attachCartListeners === 'function') {
+                    attachCartListeners();
+                }
+            } catch (err) {
+                console.error(err);
+                window.location.href = url; // Fallback to normal navigation
+            }
+        }
+
+        document.body.addEventListener('click', async function(e) {
+            // Handle pagination and category/gender links
+            const link = e.target.closest('a[href*="/hairport/user/home"]');
+            // Allow normal clicks for specific actions if needed by adding a class, otherwise intercept
+            if (link) {
+                e.preventDefault();
+                await fetchAndUpdate(link.href);
+            }
+            
+            // Handle offers button
+            const offersBtn = e.target.closest('#offers-only-btn');
+            if (offersBtn) {
+                e.preventDefault();
+                const url = new URL(window.location.href);
+                const currentOffers = url.searchParams.get('offers');
+                url.searchParams.set('offers', currentOffers === 'true' ? 'false' : 'true');
+                url.searchParams.set('page', '1');
+                await fetchAndUpdate(url.toString());
+            }
+        });
+
+        document.body.addEventListener('change', async function(e) {
+            // Handle sort select
+            if (e.target.id === 'sort-select') {
+                const url = new URL(window.location.href);
+                url.searchParams.set('sort', e.target.value);
+                url.searchParams.set('page', '1');
+                await fetchAndUpdate(url.toString());
+            }
+        });
+        
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', async function() {
+            await fetchAndUpdate(window.location.href);
+        });
     });
   </script>
 
