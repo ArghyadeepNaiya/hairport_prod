@@ -33,51 +33,51 @@
     <span class="text-sm font-extrabold text-[#E23744]">Home</span>
   </a>
 
-  <div class="w-full max-w-lg mx-auto">
-    <div class="text-center mb-8">
-        <h1 class="flex items-center justify-center gap-2 text-2xl sm:text-3xl font-black tracking-tight text-[#1C1C1C] dark:text-white">
-          <svg class="w-6 h-6 sm:w-8 sm:h-8 text-[#E23744] shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
-          RANCHI HAIR PORT <span class="text-[10px] sm:text-xs bg-[#E23744] text-white px-2 py-0.5 rounded-full ml-1">SALON</span>
+  <div class="w-[80vw] sm:w-full max-w-md mx-auto">
+    <div class="text-center mb-6 sm:mb-8">
+        <h1 class="flex items-center justify-center gap-2 text-xl sm:text-2xl font-black tracking-tight text-[#1C1C1C] dark:text-white">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#E23744] shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+          RANCHI HAIR PORT <span class="text-[10px] bg-[#E23744] text-white px-2 py-0.5 rounded-full ml-1">SALON</span>
         </h1>
     </div>
 
-    <div class="bg-white dark:bg-[#1E1E1E] rounded-[2.5rem] p-8 sm:p-12 border border-stone-200 dark:border-stone-800 shadow-2xl">
-      <div class="text-center mb-8 sm:mb-10">
-        <h2 class="text-3xl font-black text-[#1C1C1C] dark:text-white mb-3">Create Account</h2>
-        <p class="text-base text-stone-500 dark:text-stone-400">Sign up to book your premium salon experience</p>
+    <div class="bg-white dark:bg-[#1E1E1E] rounded-[2rem] p-6 sm:p-8 border border-stone-200 dark:border-stone-800 shadow-2xl h-[70vh] sm:h-auto flex flex-col justify-center overflow-y-auto">
+      <div class="text-center mb-6">
+        <h2 class="text-2xl font-black text-[#1C1C1C] dark:text-white mb-2">Create Account</h2>
+        <p class="text-sm text-stone-500 dark:text-stone-400">Sign up to book your experience</p>
       </div>
       
       
-<form action="/hairport/user/signup" method="POST" class="space-y-5">
-    <div class="space-y-2">
-        <label class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-stone-500">Full Name</label>
-        <input type="text" name="username" class="w-full px-5 py-4 bg-stone-50 dark:bg-stone-900 text-base font-black rounded-xl border border-stone-200 dark:border-stone-700 focus:outline-none focus:ring-2 focus:ring-rose-500/30 text-[#1C1C1C] dark:text-white" placeholder="John Doe" required>
+<form action="/hairport/user/signup" method="POST" class="space-y-4 my-auto">
+    <div class="space-y-1.5">
+        <label class="text-[11px] font-extrabold uppercase tracking-wider text-stone-500">Full Name</label>
+        <input type="text" name="username" class="w-full px-4 py-3 bg-stone-50 dark:bg-stone-900 text-sm font-black rounded-xl border border-stone-200 dark:border-stone-700 focus:outline-none focus:ring-2 focus:ring-rose-500/30 text-[#1C1C1C] dark:text-white" placeholder="John Doe" required>
     </div>
-    <div class="space-y-2">
-        <label class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-stone-500">Phone Number</label>
+    <div class="space-y-1.5">
+        <label class="text-[11px] font-extrabold uppercase tracking-wider text-stone-500">Phone Number</label>
         <div class="relative flex items-center">
-            <span class="absolute left-5 text-base font-bold text-stone-500">+91</span>
-            <input type="tel" name="phone" maxlength="10" class="w-full pl-14 pr-5 py-4 bg-stone-50 dark:bg-stone-900 text-base font-black rounded-xl border border-stone-200 dark:border-stone-700 focus:outline-none focus:ring-2 focus:ring-rose-500/30 text-[#1C1C1C] dark:text-white" placeholder="Enter 10 digit number" required>
+            <span class="absolute left-4 text-sm font-bold text-stone-500">+91</span>
+            <input type="tel" name="phone" maxlength="10" class="w-full pl-12 pr-4 py-3 bg-stone-50 dark:bg-stone-900 text-sm font-black rounded-xl border border-stone-200 dark:border-stone-700 focus:outline-none focus:ring-2 focus:ring-rose-500/30 text-[#1C1C1C] dark:text-white" placeholder="Enter 10 digit number" required>
         </div>
     </div>
-    <div class="space-y-2">
-        <label class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-stone-500">Email Address</label>
-        <input type="email" name="email" class="w-full px-5 py-4 bg-stone-50 dark:bg-stone-900 text-base font-black rounded-xl border border-stone-200 dark:border-stone-700 focus:outline-none focus:ring-2 focus:ring-rose-500/30 text-[#1C1C1C] dark:text-white" placeholder="name@example.com" required>
+    <div class="space-y-1.5">
+        <label class="text-[11px] font-extrabold uppercase tracking-wider text-stone-500">Email Address</label>
+        <input type="email" name="email" class="w-full px-4 py-3 bg-stone-50 dark:bg-stone-900 text-sm font-black rounded-xl border border-stone-200 dark:border-stone-700 focus:outline-none focus:ring-2 focus:ring-rose-500/30 text-[#1C1C1C] dark:text-white" placeholder="name@example.com" required>
     </div>
-    <div class="space-y-2">
-        <label class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-stone-500">Password</label>
-        <input type="password" name="password" class="w-full px-5 py-4 bg-stone-50 dark:bg-stone-900 text-base font-black rounded-xl border border-stone-200 dark:border-stone-700 focus:outline-none focus:ring-2 focus:ring-rose-500/30 text-[#1C1C1C] dark:text-white" placeholder="••••••••" required>
+    <div class="space-y-1.5">
+        <label class="text-[11px] font-extrabold uppercase tracking-wider text-stone-500">Password</label>
+        <input type="password" name="password" class="w-full px-4 py-3 bg-stone-50 dark:bg-stone-900 text-sm font-black rounded-xl border border-stone-200 dark:border-stone-700 focus:outline-none focus:ring-2 focus:ring-rose-500/30 text-[#1C1C1C] dark:text-white" placeholder="••••••••" required>
     </div>
-    <div class="space-y-2">
-        <label class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-stone-500">Confirm Password</label>
-        <input type="password" name="confirmPassword" class="w-full px-5 py-4 bg-stone-50 dark:bg-stone-900 text-base font-black rounded-xl border border-stone-200 dark:border-stone-700 focus:outline-none focus:ring-2 focus:ring-rose-500/30 text-[#1C1C1C] dark:text-white" placeholder="••••••••" required>
+    <div class="space-y-1.5">
+        <label class="text-[11px] font-extrabold uppercase tracking-wider text-stone-500">Confirm Password</label>
+        <input type="password" name="confirmPassword" class="w-full px-4 py-3 bg-stone-50 dark:bg-stone-900 text-sm font-black rounded-xl border border-stone-200 dark:border-stone-700 focus:outline-none focus:ring-2 focus:ring-rose-500/30 text-[#1C1C1C] dark:text-white" placeholder="••••••••" required>
     </div>
-    <button type="submit" class="w-full mt-4 py-4 sm:py-5 rounded-xl bg-[#E23744] text-white font-black text-base sm:text-lg uppercase tracking-wider hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-rose-900/30">Create Account</button>
-    <p class="text-xs text-center text-stone-400 font-medium pt-2">By signing up, you agree to our Terms & Privacy Policy.</p>
+    <button type="submit" class="w-full mt-2 py-3.5 rounded-xl bg-[#E23744] text-white font-black text-sm uppercase tracking-wider hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-rose-900/30">Create Account</button>
+    <p class="text-[10px] text-center text-stone-400 font-medium">By signing up, you agree to our Terms & Privacy Policy.</p>
 </form>
 
       
-      <div class="mt-8 text-center text-base font-bold text-stone-500">
+      <div class="mt-6 text-center text-sm font-bold text-stone-500">
         Already have an account? <a href="/hairport/user/login" class="text-[#E23744] hover:underline">Log in here</a>
       </div>
     </div>
