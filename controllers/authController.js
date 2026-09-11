@@ -194,8 +194,12 @@ const login=async(req,res,next)=>{
             } catch(e) {}
         }
         
-        res.redirect("/hairport/user/home");
-        // res.status(200).json({ success: true, message: "Logged in successfully!" });
+        let redirectUrl = "/hairport/user/home";
+        if (req.cookies && req.cookies.postLoginRedirect) {
+            redirectUrl = req.cookies.postLoginRedirect;
+            res.cookie('postLoginRedirect', '', { maxAge: 0 });
+        }
+        res.redirect(redirectUrl);
     }
     catch(e){
         return next(new ExpressError(e.message,500));

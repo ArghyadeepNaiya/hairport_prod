@@ -31,7 +31,7 @@ const { addToCart, viewCart, renderSchedule, placeOrder,removeFromCart } = requi
 router.post("/cart/add/:id", addToCart);
 router.post("/cart/remove/:id", removeFromCart);
 router.get("/cart", viewCart);
-router.get("/cart/schedule", isLoggedIn, renderSchedule);
+router.get("/cart/schedule", renderSchedule);
 router.post("/cart/book", isLoggedIn, placeOrder);
 
 

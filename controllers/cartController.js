@@ -155,17 +155,30 @@ const removeFromCart = async (req, res, next) => {
 
 const renderSchedule = async (req, res, next) => {
     try {
-        // Protected route, req.user exists
-        const userId = req.user._id;
-        const cart = await Cart.findOne({ user: userId }).populate('items');
+        const userId = getUserId(req);
+        let cartItems = [];
+        
+        if (userId) {
+            const cart = await Cart.findOne({ user: userId }).populate('items');
+            if (cart && cart.items) cartItems = cart.items;
+        } else {
+            const guestCart = getGuestCart(req);
+            if (guestCart.length > 0) {
+                const fetchedItems = await Listing.find({ _id: { $in: guestCart } });
+                const itemsMap = {};
+                fetchedItems.forEach(item => itemsMap[item._id.toString()] = item);
+                cartItems = guestCart.map(id => itemsMap[id]).filter(Boolean);
+            }
+        }
+
         let subtotal = 0;
         let groupedItems = [];
         
-        if (cart && cart.items.length > 0) {
-            cart.items.forEach(item => subtotal += item.price);
+        if (cartItems.length > 0) {
+            cartItems.forEach(item => subtotal += item.price);
             
             const itemMap = new Map();
-            cart.items.forEach(item => {
+            cartItems.forEach(item => {
                 if (item && item._id) {
                     const idStr = item._id.toString();
                     if (itemMap.has(idStr)) {
@@ -177,7 +190,7 @@ const renderSchedule = async (req, res, next) => {
             });
             groupedItems = Array.from(itemMap.values());
         }
-        res.render("schedule.ejs", { subtotal, groupedItems });
+        res.render("schedule.ejs", { subtotal, groupedItems, isLoggedIn: !!userId });
     } catch (e) {
         return next(new ExpressError(e.message, 500));
     }
@@ -286,7 +299,7 @@ const placeOrder = async (req, res, next) => {
         cart.items = [];
         await cart.save();
 
-        res.redirect("/hairport/user/profile");
+        res.redirect("/hairport/user/home");
     } catch (e) {
         return next(new ExpressError(e.message, 500));
     }

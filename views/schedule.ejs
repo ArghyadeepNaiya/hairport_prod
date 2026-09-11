@@ -178,6 +178,31 @@
             "07:00 PM", "08:00 PM"
           ];
 
+          // Restore pending data if any
+          const cookies = document.cookie.split(';');
+          let pendingData = null;
+          cookies.forEach(c => {
+              if (c.trim().startsWith('pendingOrderData=')) {
+                  try {
+                      pendingData = JSON.parse(decodeURIComponent(c.trim().substring('pendingOrderData='.length)));
+                  } catch(e) {}
+              }
+          });
+
+          if (pendingData) {
+              if (pendingData.location) {
+                  const locSelect = document.querySelector('[name="location"]');
+                  if (locSelect) locSelect.value = pendingData.location;
+              }
+              if (pendingData.date) selectedDateStr = pendingData.date;
+              if (pendingData.time) selectedTimeStr = pendingData.time;
+              if (pendingData.remark) {
+                  const rem = document.querySelector('[name="remark"]');
+                  if (rem) rem.value = pendingData.remark;
+              }
+              document.cookie = 'pendingOrderData=; path=/; max-age=0';
+          }
+
           function renderUI() {
             // Render Dates
             datesContainer.innerHTML = daysList.map(day => {
@@ -227,6 +252,21 @@
             scheduleForm.addEventListener('submit', (e) => {
               e.preventDefault();
               
+              // If user is a guest, save data and redirect to login
+              if (!<%= isLoggedIn %>) {
+                  const formData = new FormData(scheduleForm);
+                  const data = {
+                      location: formData.get('location'),
+                      date: formData.get('date'),
+                      time: formData.get('time'),
+                      remark: formData.get('remark')
+                  };
+                  document.cookie = `pendingOrderData=${encodeURIComponent(JSON.stringify(data))}; path=/; max-age=3600`;
+                  document.cookie = `postLoginRedirect=/hairport/user/cart/schedule; path=/; max-age=3600`;
+                  window.location.href = "/hairport/user/login";
+                  return;
+              }
+
               // Fire confetti
               confetti({
                 particleCount: 150,
