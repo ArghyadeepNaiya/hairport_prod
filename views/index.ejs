@@ -520,13 +520,7 @@
                     
                     if (addBtn || removeBtn) {
                         e.preventDefault();
-                        if (!isLoggedInUser) {
-                            const modal = document.getElementById('auth-required-modal');
-                            modal.classList.remove('hidden');
-                            modal.classList.add('flex');
-                            return;
-                        }
-
+                        
                         const listingId = this.dataset.listingId;
                         const actionUrl = addBtn ? `/hairport/user/cart/add/${listingId}` : `/hairport/user/cart/remove/${listingId}`;
                         
