@@ -44,7 +44,8 @@ const databaseConnect = async () => {
     cached.conn = await cached.promise;
   } catch (e) {
     cached.promise = null;
-    console.error(e);
+    console.error("Mongoose connection failed:", e);
+    throw e;
   }
 
   return cached.conn;

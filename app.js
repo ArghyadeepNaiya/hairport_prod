@@ -1,7 +1,18 @@
 const express=require("express");
 const app=express();
 const databaseconnect = require('./config/config.js');
-databaseconnect();
+
+// Vercel Serverless best practice: ensure DB is connected before handling any route
+app.use(async (req, res, next) => {
+  try {
+    await databaseconnect();
+    next();
+  } catch (err) {
+    console.error("Database connection blocked route:", err);
+    res.status(500).send("Database Connection Error. Check Vercel logs for the exact MongoServerError.");
+  }
+});
+
 const error_handler = require("./middlewares/error_ware.js");
 const path = require('path');
 app.set('view engine', 'ejs'); 
