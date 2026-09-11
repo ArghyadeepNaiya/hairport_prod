@@ -94,7 +94,7 @@ const renderDashboard = async (req, res) => {
                 };
             }
             
-            if (order.status === 'Completed' || order.status === 'Cancelled') {
+            if (order.status === 'Completed' || order.status === 'Cancelled' || order.status === 'Rejected') {
                 groupedOrders[userId].finished.push(order);
             } else {
                 groupedOrders[userId].active.push(order);
