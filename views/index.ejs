@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="/tailwind_base.css" />
   <link rel="preload" as="video" href="/src/assets/animations/ranchi_hairport_animation.mp4" type="video/mp4" fetchpriority="high" />
   <script>
-    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (localStorage.getItem('theme') === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
@@ -469,8 +469,6 @@
             themeBtn.addEventListener('click', () => {
                 const isDark = document.documentElement.classList.toggle('dark');
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                document.body.classList.toggle('dark');
-                
                 const themeIcon = document.getElementById('theme-icon');
                 if (themeIcon) {
                     if (isDark) {
