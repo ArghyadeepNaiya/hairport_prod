@@ -163,6 +163,59 @@ const placeOrder = async (req, res, next) => {
 
         await newOrder.save();
         
+        // --- WHATSAPP NOTIFICATION LOGIC ---
+        
+        // Group items for message (e.g. Haircut (2))
+        const itemMap = new Map();
+        cart.items.forEach(item => {
+            const idStr = item._id.toString();
+            if (itemMap.has(idStr)) {
+                itemMap.get(idStr).quantity += 1;
+            } else {
+                itemMap.set(idStr, { name: item.name, price: item.price, quantity: 1 });
+            }
+        });
+        
+        let itemsString = '';
+        itemMap.forEach(g => {
+            itemsString += `- ${g.name} (${g.quantity}) - Rs. ${g.price * g.quantity}\n`;
+        });
+
+        const ownerPhone = process.env.OWNER_PHONE_NUMBER;
+        if (ownerPhone && ownerPhone !== "YOUR_OWNER_PHONE_NUMBER_HERE") {
+            const ownerMsg = `*New Booking Alert*\n\n` +
+                `Customer: ${user.username} (${user.phone})\n` +
+                `Location: ${location}\n` +
+                `Date: ${date}\n` +
+                `Time: ${time}\n\n` +
+                `*Items Booked:*\n${itemsString}\n` +
+                `*Cost Breakdown:*\n` +
+                `Subtotal: Rs. ${subtotal}\n` +
+                `Discount: Rs. ${discount}\n` +
+                `*Total Paid: Rs. ${total}*\n` +
+                (remark ? `\nRemark: ${remark}` : ``);
+            
+            require('../utils/whatsappService').sendWhatsAppMessage(ownerPhone, ownerMsg);
+        }
+
+        if (user.phone) {
+            const userMsg = `*Booking Confirmed*\n\n` +
+                `Hi ${user.username}, your appointment at Ranchi Hair Port is confirmed.\n\n` +
+                `Location: ${location}\n` +
+                `Date: ${date}\n` +
+                `Time: ${time}\n\n` +
+                `*Your Items:*\n${itemsString}\n` +
+                `*Cost Breakdown:*\n` +
+                `Subtotal: Rs. ${subtotal}\n` +
+                `Discount: Rs. ${discount}\n` +
+                `*Total Paid: Rs. ${total}*\n\n` +
+                `See you soon!`;
+            
+            require('../utils/whatsappService').sendWhatsAppMessage(user.phone, userMsg);
+        }
+        
+        // -----------------------------------
+
         // Clear the user's cart after booking
         cart.items = [];
         await cart.save();
