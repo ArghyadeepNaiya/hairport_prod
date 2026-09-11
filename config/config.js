@@ -28,7 +28,6 @@ const databaseConnect = async () => {
     
     // Disable buffering. If the DB isn't connected, it will fail immediately instead of timing out after 10000ms
     const opts = {
-      bufferCommands: false,
       serverSelectionTimeoutMS: 5000 
     };
 
