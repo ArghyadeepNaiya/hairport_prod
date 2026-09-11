@@ -28,9 +28,9 @@ router.get("/profile",isLoggedIn,profile);
 const { addToCart, viewCart, renderSchedule, placeOrder,removeFromCart } = require("../controllers/cartController.js");
 
 // Add these routes near the bottom, before module.exports
-router.post("/cart/add/:id", isLoggedIn, addToCart);
-router.post("/cart/remove/:id", isLoggedIn, removeFromCart);
-router.get("/cart", isLoggedIn, viewCart);
+router.post("/cart/add/:id", addToCart);
+router.post("/cart/remove/:id", removeFromCart);
+router.get("/cart", viewCart);
 router.get("/cart/schedule", isLoggedIn, renderSchedule);
 router.post("/cart/book", isLoggedIn, placeOrder);
 

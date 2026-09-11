@@ -76,6 +76,20 @@ const homepage = async (req, res, next) => {
                 }
             } catch (err) {}
         }
+
+        if (!isLoggedIn && req.cookies && req.cookies.guestCart) {
+            try {
+                const guestCart = JSON.parse(req.cookies.guestCart);
+                if (Array.isArray(guestCart) && guestCart.length > 0) {
+                    cartItemCount = guestCart.length;
+                    const fetchedItems = await Listing.find({ _id: { $in: guestCart } });
+                    const itemsMap = {};
+                    fetchedItems.forEach(item => itemsMap[item._id.toString()] = item);
+                    cartItems = guestCart.map(id => itemsMap[id]).filter(Boolean);
+                    cartItems.forEach(item => cartTotal += item.price);
+                }
+            } catch(e) {}
+        }
         
         res.render("index.ejs", { 
             all_listings, 
@@ -165,6 +179,21 @@ const login=async(req,res,next)=>{
             httpOnly:true
         }
         res.cookie("token",token,cookieoption);
+
+        // --- Merge guest cart into user cart ---
+        if (req.cookies && req.cookies.guestCart) {
+            try {
+                const guestCart = JSON.parse(req.cookies.guestCart);
+                if (Array.isArray(guestCart) && guestCart.length > 0) {
+                    let cart = await Cart.findOne({ user: user._id });
+                    if (!cart) cart = new Cart({ user: user._id, items: [] });
+                    cart.items.push(...guestCart);
+                    await cart.save();
+                }
+                res.cookie('guestCart', '', { maxAge: 0 });
+            } catch(e) {}
+        }
+        
         res.redirect("/hairport/user/home");
         // res.status(200).json({ success: true, message: "Logged in successfully!" });
     }
@@ -212,11 +241,13 @@ const renderAcademy = async (req, res, next) => {
         let cartItemIds = [];
         let purchasedItemIds = [];
 
+        let isLoggedIn = false;
         if (req.cookies && req.cookies.token) {
             try {
                 const decoded = JWT.verify(req.cookies.token, process.env.SUPERSECRET);
                 const user = await Customer.findById(decoded._id || decoded.id);
                 if (user) {
+                    isLoggedIn = true;
                     userSubscribed = (user.has_subscription === 'yes');
                     const cart = await Cart.findOne({ user: user._id }).populate('items');
                     if (cart && cart.items.length > 0) {
@@ -229,6 +260,21 @@ const renderAcademy = async (req, res, next) => {
                     purchasedItemIds = orders.flatMap(order => order.items.map(id => id.toString()));
                 }
             } catch (err) { }
+        }
+
+        if (!isLoggedIn && req.cookies && req.cookies.guestCart) {
+            try {
+                const guestCart = JSON.parse(req.cookies.guestCart);
+                if (Array.isArray(guestCart) && guestCart.length > 0) {
+                    cartItemCount = guestCart.length;
+                    const fetchedItems = await Listing.find({ _id: { $in: guestCart } });
+                    const itemsMap = {};
+                    fetchedItems.forEach(item => itemsMap[item._id.toString()] = item);
+                    const parsedCartItems = guestCart.map(id => itemsMap[id]).filter(Boolean);
+                    parsedCartItems.forEach(item => cartTotal += item.price);
+                    cartItemIds = guestCart;
+                }
+            } catch(e) {}
         }
         
         res.render("academy.ejs", { academy_listings, cartItemCount, cartTotal, userSubscribed, cartItemIds, purchasedItemIds });
